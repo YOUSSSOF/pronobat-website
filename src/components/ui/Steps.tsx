@@ -7,15 +7,15 @@ interface StepItem {
   children?: React.ReactNode;
 }
 
-interface StepsProps extends React.HTMLAttributes<HTMLOListElement> {
+interface StepsProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: StepItem[];
 }
 
 function Steps({ items, className, children, ...props }: StepsProps) {
-  // Support both prop-based items and compound child usage
+  // Support both prop-based items and compound child usage (items=[])
   if (items) {
     return (
-      <ol className={cn("space-y-0", className)} {...props}>
+      <div className={cn("steps", className)} {...props}>
         {items.map((item, index) => (
           <StepItem
             key={index}
@@ -27,14 +27,16 @@ function Steps({ items, className, children, ...props }: StepsProps) {
             {item.children}
           </StepItem>
         ))}
-      </ol>
+      </div>
     );
   }
 
+  // MDX usage: <Steps> wrapping ### headings + paragraphs
+  // CSS counters in globals.css number the h3 elements automatically
   return (
-    <ol className={cn("space-y-0", className)} {...props}>
+    <div className={cn("steps", className)} {...props}>
       {children}
-    </ol>
+    </div>
   );
 }
 

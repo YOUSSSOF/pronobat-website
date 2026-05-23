@@ -251,3 +251,35 @@ body {
 .prose-nowbat pre {
     margin-bottom: 1.5rem;
 }
+
+/* ── Steps component — auto-numbered via CSS counters ── */
+.steps {
+    counter-reset: step;
+}
+
+.steps h3 {
+    position: relative;
+    padding-inline-start: 2.75rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.375rem;
+}
+
+.steps h3::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    display: inline-flex;
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--brand);
+    background-color: var(--brand-glow);
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    line-height: 1;
+}

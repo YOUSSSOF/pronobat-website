@@ -2,6 +2,7 @@ import * as React from "react";
 import type { MDXComponents } from "mdx/types";
 import { Callout } from "@/components/ui/Callout";
 import { Kbd } from "@/components/ui/Kbd";
+import { Steps } from "@/components/ui/Steps";
 import { cn } from "@/lib/utils";
 
 // Custom styled MDX components that match the Nowbat website design system
@@ -179,4 +180,5 @@ export const mdxComponents: MDXComponents = {
   // ── Custom components available in MDX ──────────────────────────────────
   Callout,
   Kbd,
+  Steps,
 };
