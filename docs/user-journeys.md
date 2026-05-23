@@ -111,14 +111,15 @@ Three distinct audiences visit the Nowbat website with different goals, entry po
 
 **Friction Points (FP) Summary:**
 
-| # | Friction Point | Risk Level | Mitigation |
-|---|----------------|------------|------------|
-| FP-1 | صفحه به نظر فارسی نمی‌رسد | HIGH | headline فارسی بزرگ در hero، RTL کامل |
-| FP-2 | نصب پیچیده به نظر می‌رسد | MEDIUM | "۳ گام ساده" HowItWorks با زبان غیرفنی |
-| FP-3 | درگاه پرداخت ایرانی ندارد؟ | HIGH | لوگوهای زرین‌پال/آی‌دی‌پی prominently |
-| FP-4 | Demo ممکن است کار نکند | MEDIUM | نمایش "داده‌ها هر ۲۴ ساعت ریست می‌شوند" |
+| #    | Friction Point             | Risk Level | Mitigation                              |
+| ---- | -------------------------- | ---------- | --------------------------------------- |
+| FP-1 | صفحه به نظر فارسی نمی‌رسد  | HIGH       | headline فارسی بزرگ در hero، RTL کامل   |
+| FP-2 | نصب پیچیده به نظر می‌رسد   | MEDIUM     | "۳ گام ساده" HowItWorks با زبان غیرفنی  |
+| FP-3 | درگاه پرداخت ایرانی ندارد؟ | HIGH       | لوگوهای زرین‌پال/آی‌دی‌پی prominently   |
+| FP-4 | Demo ممکن است کار نکند     | MEDIUM     | نمایش "داده‌ها هر ۲۴ ساعت ریست می‌شوند" |
 
 **Drop-off Risk (DOR) Points:**
+
 - بعد از hero اگر hero متقاعد نکند → رقیب
 - بعد از payment section اگر درگاه مورد نظر نباشد → رقیب
 - در Demo اگر راهنمای تور سردرگم‌کننده باشد → رها کردن
@@ -208,14 +209,15 @@ Three distinct audiences visit the Nowbat website with different goals, entry po
 
 **Friction Points (FP) Summary:**
 
-| # | Friction Point | Risk Level | Mitigation |
-|---|----------------|------------|------------|
-| FP-1 | مستندات REST API ناقص یا گیج‌کننده | CRITICAL | جداول کامل method/path/auth/rate-limit |
-| FP-2 | مثال‌های کد دارای اشکال هستند | HIGH | همه code examples تست‌شده در محیط واقعی |
-| FP-3 | Hooks بدون مثال هستند | HIGH | هر hook یک مثال کامل دارد |
-| FP-4 | نمی‌داند چطور extend کند | MEDIUM | راهنمای extending با یک plugin example |
+| #    | Friction Point                     | Risk Level | Mitigation                              |
+| ---- | ---------------------------------- | ---------- | --------------------------------------- |
+| FP-1 | مستندات REST API ناقص یا گیج‌کننده | CRITICAL   | جداول کامل method/path/auth/rate-limit  |
+| FP-2 | مثال‌های کد دارای اشکال هستند      | HIGH       | همه code examples تست‌شده در محیط واقعی |
+| FP-3 | Hooks بدون مثال هستند              | HIGH       | هر hook یک مثال کامل دارد               |
+| FP-4 | نمی‌داند چطور extend کند           | MEDIUM     | راهنمای extending با یک plugin example  |
 
 **Drop-off Risk (DOR) Points:**
+
 - وقتی مستندات API ناقص باشد → انتخاب رقیب فنی‌تر
 - وقتی مثال‌های کد اجرا نشوند → بی‌اعتمادی کامل
 
@@ -321,13 +323,14 @@ GitHub Issue باز می‌کند
 
 **Friction Points (FP) Summary:**
 
-| # | Friction Point | Risk Level | Mitigation |
-|---|----------------|------------|------------|
-| FP-1 | نمی‌داند از کجا کمک بگیرد | HIGH | footer با لینک GitHub Issues، WP.org forum |
-| FP-2 | راهنماها ناقص یا گیج‌کننده هستند | HIGH | هر guide یک نتیجه واضح دارد (`<Steps>`) |
-| FP-3 | اسکرین‌شات‌ها با نسخه فعلی match نمی‌کنند | MEDIUM | وژن مشخص روی هر screenshot |
+| #    | Friction Point                            | Risk Level | Mitigation                                 |
+| ---- | ----------------------------------------- | ---------- | ------------------------------------------ |
+| FP-1 | نمی‌داند از کجا کمک بگیرد                 | HIGH       | footer با لینک GitHub Issues، WP.org forum |
+| FP-2 | راهنماها ناقص یا گیج‌کننده هستند          | HIGH       | هر guide یک نتیجه واضح دارد (`<Steps>`)    |
+| FP-3 | اسکرین‌شات‌ها با نسخه فعلی match نمی‌کنند | MEDIUM     | وژن مشخص روی هر screenshot                 |
 
 **Drop-off Risk (DOR) Points:**
+
 - وقتی مشکل در troubleshooting پیدا نشود → فرستادن issue به جای uninstall
 - وقتی راهنما نیمه‌کاره باشد → uninstall
 
@@ -346,13 +349,13 @@ GitHub Issue باز می‌کند
 
 ### Page Priority از منظر Journey:
 
-| صفحه | برای Evaluator | برای Developer | برای Existing User |
-|------|----------------|----------------|-------------------|
-| `/` | CRITICAL | Medium | Low |
-| `/features` | High | Medium | Low |
-| `/demo` | CRITICAL | High | Low |
-| `/docs/rest-api` | Low | CRITICAL | Medium |
-| `/docs/hooks` | Low | CRITICAL | Medium |
-| `/docs/troubleshooting` | Low | Medium | CRITICAL |
-| `/guides/*` | Medium | High | CRITICAL |
-| `/blog` | Medium | Medium | Low |
+| صفحه                    | برای Evaluator | برای Developer | برای Existing User |
+| ----------------------- | -------------- | -------------- | ------------------ |
+| `/`                     | CRITICAL       | Medium         | Low                |
+| `/features`             | High           | Medium         | Low                |
+| `/demo`                 | CRITICAL       | High           | Low                |
+| `/docs/rest-api`        | Low            | CRITICAL       | Medium             |
+| `/docs/hooks`           | Low            | CRITICAL       | Medium             |
+| `/docs/troubleshooting` | Low            | Medium         | CRITICAL           |
+| `/guides/*`             | Medium         | High           | CRITICAL           |
+| `/blog`                 | Medium         | Medium         | Low                |

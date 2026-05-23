@@ -17,43 +17,43 @@
 
 ## 20 Primary Persian Keyword Targets
 
-| # | کلیدواژه | حجم جستجوی تخمینی/ماه | نوع | صفحه هدف | رقابت |
-|---|----------|----------------------|-----|-----------|-------|
-| ۱ | افزونه نوبت‌دهی وردپرس | ۱,۲۰۰–۲,۵۰۰ | Commercial | `/` | متوسط |
-| ۲ | سیستم نوبت‌دهی آنلاین ایران | ۸۰۰–۱,۸۰۰ | Commercial | `/` | پایین |
-| ۳ | افزونه نوبت‌دهی وردپرس فارسی | ۶۰۰–۱,۴۰۰ | Commercial | `/` | پایین |
-| ۴ | رزرو آنلاین وردپرس | ۵۰۰–۱,۲۰۰ | Commercial | `/features` | متوسط |
-| ۵ | اتصال زرین‌پال به وردپرس | ۴۰۰–۹۰۰ | Informational | `/guides/setup-payments` | پایین |
-| ۶ | تقویم جلالی وردپرس | ۳۵۰–۸۰۰ | Informational | `/blog/jalali-calendar-wordpress` | پایین |
-| ۷ | پلاگین رزرو وقت وردپرس | ۳۰۰–۷۰۰ | Commercial | `/` | پایین |
-| ۸ | مقایسه سرویس پیامک ایران | ۲۵۰–۶۰۰ | Informational | `/blog/sms-providers-comparison` | پایین |
-| ۹ | سیستم رزرو کلینیک وردپرس | ۲۰۰–۵۰۰ | Informational | `/blog/clinic-booking-wordpress` | بسیار پایین |
-| ۱۰ | کاوه‌نگار پیامک وردپرس | ۱۸۰–۴۵۰ | Informational | `/guides/configure-sms` | پایین |
-| ۱۱ | افزونه وردپرس آرایشگاه | ۱۵۰–۴۰۰ | Commercial | `/` | بسیار پایین |
-| ۱۲ | نوبت‌دهی آنلاین آرایشگاه | ۱۵۰–۳۵۰ | Commercial | `/` | بسیار پایین |
-| ۱۳ | نصب افزونه نوبت وردپرس | ۱۲۰–۳۰۰ | Informational | `/docs/getting-started/installation` | بسیار پایین |
-| ۱۴ | REST API وردپرس فارسی | ۱۰۰–۲۵۰ | Informational | `/docs/rest-api` | پایین |
-| ۱۵ | نوبت تکرارشونده وردپرس | ۸۰–۲۰۰ | Informational | `/blog/recurring-appointments` | بسیار پایین |
-| ۱۶ | تقویم گوگل وردپرس فارسی | ۸۰–۱۸۰ | Informational | `/guides/google-calendar` | پایین |
-| ۱۷ | شورت‌کد رزرو وردپرس | ۶۰–۱۵۰ | Informational | `/docs/shortcodes` | بسیار پایین |
-| ۱۸ | پشتیبان‌گیری داده وردپرس | ۶۰–۱۴۰ | Informational | `/docs/configuration/advanced` | متوسط |
-| ۱۹ | افزونه رزرو آنلاین رایگان | ۵۰۰–۱,۱۰۰ | Commercial | `/` | متوسط |
-| ۲۰ | سیستم نوبت‌دهی مطب | ۴۰۰–۸۵۰ | Commercial | `/blog/clinic-booking-wordpress` | پایین |
+| #   | کلیدواژه                     | حجم جستجوی تخمینی/ماه | نوع           | صفحه هدف                             | رقابت       |
+| --- | ---------------------------- | --------------------- | ------------- | ------------------------------------ | ----------- |
+| ۱   | افزونه نوبت‌دهی وردپرس       | ۱,۲۰۰–۲,۵۰۰           | Commercial    | `/`                                  | متوسط       |
+| ۲   | سیستم نوبت‌دهی آنلاین ایران  | ۸۰۰–۱,۸۰۰             | Commercial    | `/`                                  | پایین       |
+| ۳   | افزونه نوبت‌دهی وردپرس فارسی | ۶۰۰–۱,۴۰۰             | Commercial    | `/`                                  | پایین       |
+| ۴   | رزرو آنلاین وردپرس           | ۵۰۰–۱,۲۰۰             | Commercial    | `/features`                          | متوسط       |
+| ۵   | اتصال زرین‌پال به وردپرس     | ۴۰۰–۹۰۰               | Informational | `/guides/setup-payments`             | پایین       |
+| ۶   | تقویم جلالی وردپرس           | ۳۵۰–۸۰۰               | Informational | `/blog/jalali-calendar-wordpress`    | پایین       |
+| ۷   | پلاگین رزرو وقت وردپرس       | ۳۰۰–۷۰۰               | Commercial    | `/`                                  | پایین       |
+| ۸   | مقایسه سرویس پیامک ایران     | ۲۵۰–۶۰۰               | Informational | `/blog/sms-providers-comparison`     | پایین       |
+| ۹   | سیستم رزرو کلینیک وردپرس     | ۲۰۰–۵۰۰               | Informational | `/blog/clinic-booking-wordpress`     | بسیار پایین |
+| ۱۰  | کاوه‌نگار پیامک وردپرس       | ۱۸۰–۴۵۰               | Informational | `/guides/configure-sms`              | پایین       |
+| ۱۱  | افزونه وردپرس آرایشگاه       | ۱۵۰–۴۰۰               | Commercial    | `/`                                  | بسیار پایین |
+| ۱۲  | نوبت‌دهی آنلاین آرایشگاه     | ۱۵۰–۳۵۰               | Commercial    | `/`                                  | بسیار پایین |
+| ۱۳  | نصب افزونه نوبت وردپرس       | ۱۲۰–۳۰۰               | Informational | `/docs/getting-started/installation` | بسیار پایین |
+| ۱۴  | REST API وردپرس فارسی        | ۱۰۰–۲۵۰               | Informational | `/docs/rest-api`                     | پایین       |
+| ۱۵  | نوبت تکرارشونده وردپرس       | ۸۰–۲۰۰                | Informational | `/blog/recurring-appointments`       | بسیار پایین |
+| ۱۶  | تقویم گوگل وردپرس فارسی      | ۸۰–۱۸۰                | Informational | `/guides/google-calendar`            | پایین       |
+| ۱۷  | شورت‌کد رزرو وردپرس          | ۶۰–۱۵۰                | Informational | `/docs/shortcodes`                   | بسیار پایین |
+| ۱۸  | پشتیبان‌گیری داده وردپرس     | ۶۰–۱۴۰                | Informational | `/docs/configuration/advanced`       | متوسط       |
+| ۱۹  | افزونه رزرو آنلاین رایگان    | ۵۰۰–۱,۱۰۰             | Commercial    | `/`                                  | متوسط       |
+| ۲۰  | سیستم نوبت‌دهی مطب           | ۴۰۰–۸۵۰               | Commercial    | `/blog/clinic-booking-wordpress`     | پایین       |
 
 ---
 
 ## English Developer Keywords (Secondary)
 
-| # | Keyword | Est. Monthly Volume | Type | Target Page | Competition |
-|---|---------|---------------------|------|-------------|-------------|
-| 1 | WordPress booking plugin Persian | 200–500 | Commercial | `/en/` | Low |
-| 2 | WordPress Jalali calendar plugin | 150–350 | Informational | `/en/features` | Low |
-| 3 | ZarinPal WordPress integration | 120–300 | Informational | `/en/docs/integrations/zarinpal` | Low |
-| 4 | WordPress booking plugin Iran | 100–250 | Commercial | `/en/` | Low |
-| 5 | WordPress SMS notification Kavenegar | 80–200 | Informational | `/en/docs/integrations/kavenegar` | Very Low |
-| 6 | Nowbat WordPress plugin | 50–150 | Navigational | `/en/` | Very Low |
-| 7 | WordPress booking REST API | 300–800 | Informational | `/en/docs/rest-api` | High |
-| 8 | WordPress custom booking plugin PHP | 200–500 | Informational | `/en/docs/advanced/extending` | Medium |
+| #   | Keyword                              | Est. Monthly Volume | Type          | Target Page                       | Competition |
+| --- | ------------------------------------ | ------------------- | ------------- | --------------------------------- | ----------- |
+| 1   | WordPress booking plugin Persian     | 200–500             | Commercial    | `/en/`                            | Low         |
+| 2   | WordPress Jalali calendar plugin     | 150–350             | Informational | `/en/features`                    | Low         |
+| 3   | ZarinPal WordPress integration       | 120–300             | Informational | `/en/docs/integrations/zarinpal`  | Low         |
+| 4   | WordPress booking plugin Iran        | 100–250             | Commercial    | `/en/`                            | Low         |
+| 5   | WordPress SMS notification Kavenegar | 80–200              | Informational | `/en/docs/integrations/kavenegar` | Very Low    |
+| 6   | Nowbat WordPress plugin              | 50–150              | Navigational  | `/en/`                            | Very Low    |
+| 7   | WordPress booking REST API           | 300–800             | Informational | `/en/docs/rest-api`               | High        |
+| 8   | WordPress custom booking plugin PHP  | 200–500             | Informational | `/en/docs/advanced/extending`     | Medium      |
 
 ---
 
@@ -66,6 +66,7 @@
 **Secondary:** پلاگین رزرو وقت وردپرس، افزونه وردپرس آرایشگاه، نوبت‌دهی آنلاین آرایشگاه، سیستم نوبت‌دهی مطب
 
 **Long-tail targets:**
+
 - افزونه نوبت‌دهی رایگان وردپرس فارسی
 - سیستم رزرو آنلاین با تقویم جلالی
 - نوبت‌دهی آنلاین با زرین‌پال
@@ -80,6 +81,7 @@
 **Secondary:** مدیریت نوبت وردپرس، سیستم نوبت‌دهی چندکارمندی
 
 **Long-tail targets:**
+
 - نوبت‌دهی وردپرس با تقویم جلالی و پرداخت آنلاین
 - افزونه وردپرس نوبت با پیامک خودکار
 - مدیریت کارکنان در نوبت‌دهی آنلاین
@@ -91,6 +93,7 @@
 **Primary:** نصب افزونه نوبت وردپرس
 
 **Long-tail targets:**
+
 - چطور افزونه نوبت را در وردپرس نصب کنیم
 - آموزش نصب افزونه نوبت‌دهی
 
@@ -103,6 +106,7 @@
 **Secondary:** درگاه پرداخت زرین‌پال وردپرس، نصب زرین‌پال روی وردپرس
 
 **Long-tail targets:**
+
 - آموزش اتصال زرین‌پال به افزونه نوبت‌دهی
 - تنظیم درگاه پرداخت ایرانی در وردپرس
 
@@ -155,12 +159,12 @@
 
 ## Keyword Difficulty Assessment
 
-| سطح رقابت | توضیح | استراتژی |
-|-----------|-------|---------|
-| بسیار پایین | صفر رقیب فارسی جدی | هدف: رتبه ۱–۳ در ۳ ماه |
-| پایین | چند سایت غیرتخصصی | هدف: رتبه ۱–۵ در ۶ ماه |
-| متوسط | رقبای بین‌المللی یا سایت‌های معروف | هدف: رتبه ۱–۱۰ در ۱ سال |
-| بالا | کلیدواژه‌های generic وردپرس | هدف: long-tail variants رتبه ۱–۵ |
+| سطح رقابت   | توضیح                              | استراتژی                         |
+| ----------- | ---------------------------------- | -------------------------------- |
+| بسیار پایین | صفر رقیب فارسی جدی                 | هدف: رتبه ۱–۳ در ۳ ماه           |
+| پایین       | چند سایت غیرتخصصی                  | هدف: رتبه ۱–۵ در ۶ ماه           |
+| متوسط       | رقبای بین‌المللی یا سایت‌های معروف | هدف: رتبه ۱–۱۰ در ۱ سال          |
+| بالا        | کلیدواژه‌های generic وردپرس        | هدف: long-tail variants رتبه ۱–۵ |
 
 ---
 
@@ -178,9 +182,9 @@
 
 ## Competitor Analysis Summary
 
-| رقیب | نقطه ضعف | فرصت نوبت |
-|------|---------|----------|
-| Bookly | انگلیسی‌محور، بدون تقویم جلالی، بدون SMS ایران | تمایز محلی‌سازی |
-| Amelia | گران، انگلیسی، بدون درگاه ایرانی | تمایز رایگان بودن + درگاه ایران |
-| WooCommerce Bookings | پیچیده، بدون تخصص نوبت‌دهی | تمایز سادگی راه‌اندازی |
-| افزونه‌های ایرانی قدیمی | متوقف شده، UI قدیمی | تمایز نگهداری فعال و UX مدرن |
+| رقیب                    | نقطه ضعف                                       | فرصت نوبت                       |
+| ----------------------- | ---------------------------------------------- | ------------------------------- |
+| Bookly                  | انگلیسی‌محور، بدون تقویم جلالی، بدون SMS ایران | تمایز محلی‌سازی                 |
+| Amelia                  | گران، انگلیسی، بدون درگاه ایرانی               | تمایز رایگان بودن + درگاه ایران |
+| WooCommerce Bookings    | پیچیده، بدون تخصص نوبت‌دهی                     | تمایز سادگی راه‌اندازی          |
+| افزونه‌های ایرانی قدیمی | متوقف شده، UI قدیمی                            | تمایز نگهداری فعال و UX مدرن    |

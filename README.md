@@ -22,22 +22,22 @@ The site is built with:
 
 ## Phase Progress
 
-| Phase | Title | Status |
-|-------|-------|--------|
-| 1 | Information Architecture & Content Outline | ✅ Complete |
-| 2 | Design System & Visual Identity | ⏳ Planned |
-| 3 | Next.js Project Scaffolding | ⏳ Planned |
-| 4 | Core UI Component Library | ⏳ Planned |
-| 5 | Landing Page | ⏳ Planned |
-| 6 | Features + How It Works Pages | ⏳ Planned |
-| 7 | Documentation System | ⏳ Planned |
-| 8 | Guides Section | ⏳ Planned |
-| 9 | Demo Infrastructure (VPS + WordPress) | ⏳ Planned |
-| 10 | Demo Page on Website | ⏳ Planned |
-| 11 | Blog & SEO Content | ⏳ Planned |
-| 12 | Pricing Page | ⏳ Planned |
-| 13 | Performance, SEO & Deployment | ⏳ Planned |
-| 14 | Persian Localization & RTL Polish | ⏳ Planned |
+| Phase | Title                                      | Status      |
+| ----- | ------------------------------------------ | ----------- |
+| 1     | Information Architecture & Content Outline | ✅ Complete |
+| 2     | Design System & Visual Identity            | ⏳ Planned  |
+| 3     | Next.js Project Scaffolding                | ⏳ Planned  |
+| 4     | Core UI Component Library                  | ⏳ Planned  |
+| 5     | Landing Page                               | ⏳ Planned  |
+| 6     | Features + How It Works Pages              | ⏳ Planned  |
+| 7     | Documentation System                       | ⏳ Planned  |
+| 8     | Guides Section                             | ⏳ Planned  |
+| 9     | Demo Infrastructure (VPS + WordPress)      | ⏳ Planned  |
+| 10    | Demo Page on Website                       | ⏳ Planned  |
+| 11    | Blog & SEO Content                         | ⏳ Planned  |
+| 12    | Pricing Page                               | ⏳ Planned  |
+| 13    | Performance, SEO & Deployment              | ⏳ Planned  |
+| 14    | Persian Localization & RTL Polish          | ⏳ Planned  |
 
 ---
 
@@ -45,12 +45,12 @@ The site is built with:
 
 All Phase 1 documents are in `docs/`:
 
-| File | Description |
-|------|-------------|
+| File                                                 | Description                                                  |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
 | [`docs/content-outline.md`](docs/content-outline.md) | Every page, section, headline, and body paragraph summarized |
-| [`docs/seo-keywords.md`](docs/seo-keywords.md) | 20 Persian + 8 English keyword targets with page mapping |
-| [`docs/user-journeys.md`](docs/user-journeys.md) | Three annotated user flow diagrams with friction points |
-| [`docs/demo-data-spec.md`](docs/demo-data-spec.md) | Exact demo data spec for the demo WordPress site |
+| [`docs/seo-keywords.md`](docs/seo-keywords.md)       | 20 Persian + 8 English keyword targets with page mapping     |
+| [`docs/user-journeys.md`](docs/user-journeys.md)     | Three annotated user flow diagrams with friction points      |
+| [`docs/demo-data-spec.md`](docs/demo-data-spec.md)   | Exact demo data spec for the demo WordPress site             |
 
 ---
 
@@ -88,9 +88,9 @@ npm run lint
 
 ## Related
 
-- **Plugin repository:** [github.com/YOUSSSOF/nowbat](https://github.com/YOUSSSOF/nowbat) *(planned)*
-- **Demo site:** [demo.nowbat.ir](https://demo.nowbat.ir) *(Phase 9)*
-- **Live site:** [nowbat.ir](https://nowbat.ir) *(Phase 13)*
+- **Plugin repository:** [github.com/YOUSSSOF/nowbat](https://github.com/YOUSSSOF/nowbat) _(planned)_
+- **Demo site:** [demo.nowbat.ir](https://demo.nowbat.ir) _(Phase 9)_
+- **Live site:** [nowbat.ir](https://nowbat.ir) _(Phase 13)_
 
 ---
 

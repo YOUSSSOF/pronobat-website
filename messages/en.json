@@ -1,0 +1,20 @@
+{
+  "Home": {
+    "title": "Nowbat",
+    "description": "Online Appointment Scheduling for Iranian Businesses",
+    "scaffold_note": "Phase 3 — Scaffold complete"
+  },
+  "Navigation": {
+    "features": "Features",
+    "how_it_works": "How It Works",
+    "demo": "Demo",
+    "docs": "Documentation",
+    "blog": "Blog",
+    "pricing": "Pricing",
+    "cta": "View Demo"
+  },
+  "Footer": {
+    "tagline": "Online Appointment Scheduling for Iranian Businesses",
+    "copyright": "© 2026 Nowbat. All rights reserved."
+  }
+}

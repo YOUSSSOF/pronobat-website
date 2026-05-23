@@ -1,0 +1,43 @@
+{
+  "name": "nowbat-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^15.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "fumadocs-core": "^15.0.0",
+    "fumadocs-ui": "^15.0.0",
+    "next-intl": "^4.1.0",
+    "@vercel/og": "^0.6.4",
+    "framer-motion": "^12.0.0",
+    "fuse.js": "^7.1.0",
+    "sharp": "^0.34.2",
+    "@tabler/icons-react": "^3.34.0",
+    "next-mdx-remote": "^5.0.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "@next/mdx": "^15.3.2",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.3.2",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
+  }
+}
