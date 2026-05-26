@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "./ThemeToggle";
 import { IconMenu2, IconX } from "@tabler/icons-react";
+import Image from "next/image";
+import { RTL_THEME_PRODUCT_URL } from "@/lib/config";
 
 interface NavItem {
   href: string;
@@ -57,12 +59,22 @@ function SiteHeader() {
             className="flex items-center shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded"
             aria-label="ProNobat"
           >
-            <img
+            <Image
               src="/pronobat-light.svg"
               alt="ProNobat"
+              width={320}
+              height={80}
               className="block dark:hidden h-8 w-auto"
+              priority
             />
-            <img src="/pronobat-dark.svg" alt="ProNobat" className="hidden dark:block h-8 w-auto" />
+            <Image
+              src="/pronobat-dark.svg"
+              alt="ProNobat"
+              width={320}
+              height={80}
+              className="hidden dark:block h-8 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -89,7 +101,7 @@ function SiteHeader() {
             <ThemeToggle />
             <Button
               as="a"
-              href="https://www.rtl-theme.com/product/pronobat/"
+              href={RTL_THEME_PRODUCT_URL}
               size="sm"
               className="hidden sm:inline-flex"
               target="_blank"
@@ -132,14 +144,18 @@ function SiteHeader() {
               aria-label="ProNobat"
               onClick={() => setMobileOpen(false)}
             >
-              <img
+              <Image
                 src="/pronobat-light.svg"
                 alt="ProNobat"
+                width={320}
+                height={80}
                 className="block dark:hidden h-8 w-auto"
               />
-              <img
+              <Image
                 src="/pronobat-dark.svg"
                 alt="ProNobat"
+                width={320}
+                height={80}
                 className="hidden dark:block h-8 w-auto"
               />
             </Link>
@@ -174,7 +190,7 @@ function SiteHeader() {
           {/* Bottom actions */}
           <div className="px-6 py-6 border-t border-[var(--border)] flex flex-col gap-3">
             <a
-              href="https://www.rtl-theme.com/product/pronobat/"
+              href={RTL_THEME_PRODUCT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center px-4 py-2 rounded text-body-sm font-medium bg-brand text-white hover:bg-brand-dim transition-colors duration-150 outline-none focus-visible:ring-2 focus-visible:ring-brand"

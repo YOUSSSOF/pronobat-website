@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { IconRocket } from "@tabler/icons-react";
+import { RTL_THEME_PRODUCT_URL } from "@/lib/config";
 
 interface DemoCtaBannerProps {
   className?: string;
@@ -57,7 +58,7 @@ function DemoCtaBanner({ className, title, ctaLabel }: DemoCtaBannerProps) {
 
             <div className="flex flex-wrap justify-center gap-3">
               <a
-                href="https://www.rtl-theme.com/product/pronobat/"
+                href={RTL_THEME_PRODUCT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 text-body-lg rounded font-medium transition-colors duration-150 bg-brand text-white hover:bg-brand-dim border border-transparent"

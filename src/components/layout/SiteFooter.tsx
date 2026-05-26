@@ -1,6 +1,8 @@
 import * as React from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n";
+import { RTL_THEME_PRODUCT_URL } from "@/lib/config";
 import { cn } from "@/lib/utils";
 
 const FOOTER_LINKS = {
@@ -37,14 +39,18 @@ function SiteFooter() {
               className="inline-flex items-center mb-4 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded"
               aria-label="ProNobat"
             >
-              <img
+              <Image
                 src="/pronobat-light.svg"
                 alt="ProNobat"
+                width={320}
+                height={80}
                 className="block dark:hidden h-7 w-auto"
               />
-              <img
+              <Image
                 src="/pronobat-dark.svg"
                 alt="ProNobat"
+                width={320}
+                height={80}
                 className="hidden dark:block h-7 w-auto"
               />
             </Link>
@@ -130,7 +136,7 @@ function SiteFooter() {
             است.
           </p>
           <a
-            href="https://www.rtl-theme.com/product/pronobat/"
+            href={RTL_THEME_PRODUCT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-caption text-brand hover:text-brand-dim transition-colors duration-150 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded"

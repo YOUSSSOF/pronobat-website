@@ -5,9 +5,9 @@ export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const title = searchParams.get("title") ?? "نوبت";
+  const title = searchParams.get("title") ?? "ProNobat";
   const description =
-    searchParams.get("description") ?? "سیستم نوبت‌دهی آنلاین برای کسب‌وکارهای ایرانی";
+    searchParams.get("description") ?? "افزونه نوبت‌دهی آنلاین فارسی برای وردپرس";
 
   return new ImageResponse(
     <div

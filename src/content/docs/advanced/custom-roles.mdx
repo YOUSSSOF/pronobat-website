@@ -1,6 +1,6 @@
----
+﻿---
 title: "نقش‌ها و دسترسی‌ها"
-description: "سیستم permission نوبت، ثابت‌های capability، و نحوه اعطای دسترسی به نقش‌های سفارشی."
+description: "سیستم permission پرونوبت، ثابت‌های capability، و نحوه اعطای دسترسی به نقش‌های سفارشی."
 ---
 
 # نقش‌ها و دسترسی‌ها
@@ -9,32 +9,32 @@ description: "سیستم permission نوبت، ثابت‌های capability، و
 
 | Capability | توضیح |
 |---|---|
-| `nowbat_manage_appointments` | مشاهده، ویرایش، و تغییر وضعیت نوبت‌ها |
-| `nowbat_manage_settings` | ویرایش تنظیمات افزونه |
-| `nowbat_manage_staff` | افزودن و ویرایش کارمندان |
-| `nowbat_manage_services` | افزودن و ویرایش خدمات |
-| `nowbat_view_reports` | مشاهده گزارش‌ها و داشبورد |
-| `nowbat_process_refunds` | درخواست استرداد وجه |
+| `pronobat_manage_appointments` | مشاهده، ویرایش، و تغییر وضعیت نوبت‌ها |
+| `pronobat_manage_settings` | ویرایش تنظیمات افزونه |
+| `pronobat_manage_staff` | افزودن و ویرایش کارمندان |
+| `pronobat_manage_services` | افزودن و ویرایش خدمات |
+| `pronobat_view_reports` | مشاهده گزارش‌ها و داشبورد |
+| `pronobat_process_refunds` | درخواست استرداد وجه |
 
 ## نقش‌های پیش‌فرض
 
-| نقش وردپرس | Capability های نوبت |
+| نقش وردپرس | Capability های پرونوبت |
 |---|---|
 | `administrator` | همه |
-| `nowbat_manager` | همه به جز تنظیمات سیستمی |
-| `nowbat_staff` | فقط نوبت‌های خود + `nowbat_manage_appointments` |
+| `pronobat_manager` | همه به جز تنظیمات سیستمی |
+| `pronobat_staff` | فقط نوبت‌های خود + `pronobat_manage_appointments` |
 
 ## اعطای دسترسی به نقش سفارشی
 
-برای دادن دسترسی نوبت به نقش دلخواه خود:
+برای دادن دسترسی پرونوبت به نقش دلخواه خود:
 
 ```php
 add_action( 'after_setup_theme', function() {
     $role = get_role( 'editor' ); // نام نقش خود را اینجا وارد کنید
     if ( ! $role ) return;
 
-    $role->add_cap( 'nowbat_manage_appointments' );
-    $role->add_cap( 'nowbat_view_reports' );
+    $role->add_cap( 'pronobat_manage_appointments' );
+    $role->add_cap( 'pronobat_view_reports' );
 } );
 ```
 
@@ -47,25 +47,25 @@ add_action( 'after_setup_theme', function() {
 ```php
 $role = get_role( 'author' );
 if ( $role ) {
-    $role->remove_cap( 'nowbat_manage_appointments' );
+    $role->remove_cap( 'pronobat_manage_appointments' );
 }
 ```
 
 ## بررسی دسترسی در کد سفارشی
 
 ```php
-if ( current_user_can( 'nowbat_manage_appointments' ) ) {
+if ( current_user_can( 'pronobat_manage_appointments' ) ) {
     // نمایش دکمه مدیریت
 }
 ```
 
 ## امنیت REST API
 
-هر route مدیریتی نوبت دارای `permission_callback` است:
+هر route مدیریتی پرونوبت دارای `permission_callback` است:
 
 ```php
 'permission_callback' => function() {
-    return current_user_can( 'nowbat_manage_appointments' );
+    return current_user_can( 'pronobat_manage_appointments' );
 },
 ```
 

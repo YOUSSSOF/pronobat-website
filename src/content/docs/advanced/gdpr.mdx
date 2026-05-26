@@ -1,6 +1,6 @@
----
+﻿---
 title: "GDPR و حریم خصوصی"
-description: "داده‌های ذخیره‌شده توسط نوبت، endpoint های anonymize/export، و تنظیمات نگهداری داده."
+description: "داده‌های ذخیره‌شده توسط پرونوبت، endpoint های anonymize/export، و تنظیمات نگهداری داده."
 ---
 
 # GDPR و حریم خصوصی
@@ -9,38 +9,38 @@ description: "داده‌های ذخیره‌شده توسط نوبت، endpoint
 
 | جدول | داده‌های شخصی | مدت نگهداری پیش‌فرض |
 |---|---|---|
-| `wp_nowbat_appointments` | نام، تلفن، ایمیل مشتری | ۳ سال |
-| `wp_nowbat_payments` | مبلغ، شماره مرجع | ۷ سال (الزام مالیاتی) |
-| `wp_nowbat_customers` | نام، تلفن، ایمیل، opt-out | تا درخواست حذف |
-| `wp_nowbat_logs` | IP، User-Agent (فقط خطا) | ۹۰ روز |
+| `wp_pronobat_appointments` | نام، تلفن، ایمیل مشتری | ۳ سال |
+| `wp_pronobat_payments` | مبلغ، شماره مرجع | ۷ سال (الزام مالیاتی) |
+| `wp_pronobat_customers` | نام، تلفن، ایمیل، opt-out | تا درخواست حذف |
+| `wp_pronobat_logs` | IP، User-Agent (فقط خطا) | ۹۰ روز |
 
 ## درخواست صادر کردن داده
 
-کاربران می‌توانند از طریق ابزار بومی وردپرس «درخواست صادر کردن داده شخصی» درخواست دهند. نوبت به‌طور خودکار داده‌های خود را در پاسخ به این درخواست‌ها اضافه می‌کند.
+کاربران می‌توانند از طریق ابزار بومی وردپرس «درخواست صادر کردن داده شخصی» درخواست دهند. پرونوبت به‌طور خودکار داده‌های خود را در پاسخ به این درخواست‌ها اضافه می‌کند.
 
 همچنین از طریق API:
 
 ```
-GET /wp-json/nowbat/v1/admin/customers/{id}/export
+GET /wp-json/pronobat/v1/admin/customers/{id}/export
 ```
 
-**دسترسی:** `nowbat_manage_settings` + `X-WP-Nonce`
+**دسترسی:** `pronobat_manage_settings` + `X-WP-Nonce`
 
 پاسخ: JSON با تمام نوبت‌ها و اطلاعات مشتری در یک فایل قابل دانلود.
 
 ## ناشناس‌سازی (Anonymize)
 
 ```
-POST /wp-json/nowbat/v1/admin/customers/{id}/anonymize
+POST /wp-json/pronobat/v1/admin/customers/{id}/anonymize
 ```
 
-**دسترسی:** `nowbat_manage_settings`
+**دسترسی:** `pronobat_manage_settings`
 
 این endpoint:
 
 1. نام را با `Customer #ID` جایگزین می‌کند
 2. تلفن را با `XXXXXXXXXXX` جایگزین می‌کند
-3. ایمیل را با `anonymized@nowbat.invalid` جایگزین می‌کند
+3. ایمیل را با `anonymized@pronobat.invalid` جایگزین می‌کند
 4. داده‌های گوگل تقویم را قطع می‌کند
 5. لاگ‌های مرتبط را حذف می‌کند
 
@@ -48,7 +48,7 @@ POST /wp-json/nowbat/v1/admin/customers/{id}/anonymize
 
 ## تنظیمات نگهداری
 
-مسیر: **نوبت ← تنظیمات ← پیشرفته ← نگهداری داده**
+مسیر: **پرونوبت ← تنظیمات ← پیشرفته ← نگهداری داده**
 
 | تنظیم | پیش‌فرض |
 |---|---|
@@ -62,4 +62,4 @@ POST /wp-json/nowbat/v1/admin/customers/{id}/anonymize
 
 ## Privacy Policy
 
-متن پیشنهادی برای صفحه سیاست حریم خصوصی سایت شما در **نوبت ← ابزارها ← حریم خصوصی** قابل مشاهده است.
+متن پیشنهادی برای صفحه سیاست حریم خصوصی سایت شما در **پرونوبت ← ابزارها ← حریم خصوصی** قابل مشاهده است.

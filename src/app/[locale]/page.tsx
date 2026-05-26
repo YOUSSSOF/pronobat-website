@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: siteUrl,
       title: t("og_title"),
       description: t("og_description"),
-      siteName: "نوبت",
+      siteName: "ProNobat",
       images: [
         {
           url: ogImageUrl,
@@ -62,16 +62,13 @@ export default async function HomePage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "نوبت (ProNobat)",
-    description: true
-      ? "افزونه نوبت‌دهی آنلاین فارسی برای وردپرس با تقویم جلالی، درگاه‌های پرداخت ایرانی، و پیامک فارسی"
-      : "Persian-first online appointment scheduling WordPress plugin with Jalali calendar, Iranian payment gateways, and Persian SMS",
+    name: "ProNobat",
+    description: "افزونه نوبت‌دهی آنلاین فارسی برای وردپرس با تقویم جلالی، درگاه‌های پرداخت ایرانی، و پیامک فارسی",
     operatingSystem: "WordPress 6.0+",
     applicationCategory: "BusinessApplication",
     inLanguage: "fa",
     offers: {
       "@type": "Offer",
-      price: undefined,
       url: "https://www.rtl-theme.com/product/pronobat/",
     },
     url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pronobat.ir",

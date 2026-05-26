@@ -39,7 +39,7 @@ export function DocsLayoutClient({
       </aside>
 
       {/* Main content area */}
-      <main className="flex-1 min-w-0 py-8">{children}</main>
+      <main className="flex-1 min-w-0 py-6 sm:py-8 overflow-hidden">{children}</main>
 
       {/* Search modal */}
       <SearchModal documents={searchDocuments} isOpen={isOpen} onClose={close} />

@@ -38,7 +38,7 @@ export const ALL_DOC_PAGES: DocPage[] = [
   { slug: "integrations/google-calendar", title: "Google Calendar", section: "یکپارچگی‌ها" },
   // Advanced
   { slug: "advanced/custom-roles", title: "نقش‌های سفارشی", section: "پیشرفته" },
-  { slug: "advanced/extending", title: "گسترش نوبت", section: "پیشرفته" },
+  { slug: "advanced/extending", title: "گسترش پرونوبت", section: "پیشرفته" },
   { slug: "advanced/gdpr", title: "حریم خصوصی", section: "پیشرفته" },
   // Other
   { slug: "troubleshooting", title: "رفع مشکلات", section: "سایر" },
@@ -93,7 +93,7 @@ export function buildSidebarGroups(): DocsSidebarGroup[] {
       title: "پیشرفته",
       items: [
         { href: "/docs/advanced/custom-roles", label: "نقش‌های سفارشی" },
-        { href: "/docs/advanced/extending", label: "گسترش نوبت" },
+        { href: "/docs/advanced/extending", label: "گسترش پرونوبت" },
         { href: "/docs/advanced/gdpr", label: "حریم خصوصی" },
       ],
     },

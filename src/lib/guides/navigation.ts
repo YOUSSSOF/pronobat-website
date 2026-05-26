@@ -34,7 +34,7 @@ export const ALL_GUIDES: GuidePage[] = [
     slug: "configure-sms",
     titleFa: "پیکربندی پیامک با کاوه‌نگار",
     titleEn: "Configure SMS with Kavenegar",
-    descriptionFa: "ثبت‌نام، دریافت API Key، تنظیم قالب OTP، و تست ارسال از پنل نوبت.",
+    descriptionFa: "ثبت‌نام، دریافت API Key، تنظیم قالب OTP، و تست ارسال از پنل پرونوبت.",
     descriptionEn:
       "Register, get an API Key, set up the OTP template, and send a test SMS from the ProNobat admin panel.",
     category: "notifications",
@@ -42,7 +42,7 @@ export const ALL_GUIDES: GuidePage[] = [
   },
   {
     slug: "google-calendar",
-    titleFa: "اتصال Google Calendar به نوبت",
+    titleFa: "اتصال Google Calendar به پرونوبت",
     titleEn: "Connect Google Calendar to ProNobat",
     descriptionFa:
       "ساخت OAuth2 App در Google Cloud Console، تنظیم Redirect URI، و اتصال تقویم هر کارمند.",

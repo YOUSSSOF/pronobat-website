@@ -5,7 +5,7 @@ import { Kbd } from "@/components/ui/Kbd";
 import { Steps } from "@/components/ui/Steps";
 import { cn } from "@/lib/utils";
 
-// Custom styled MDX components that match the Nowbat website design system
+// Custom styled MDX components for the ProNobat documentation
 export const mdxComponents: MDXComponents = {
   // ── Headings ────────────────────────────────────────────────────────────
   h1: ({ children, ...props }) => (

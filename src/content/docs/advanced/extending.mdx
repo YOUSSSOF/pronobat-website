@@ -1,4 +1,4 @@
----
+﻿---
 title: "توسعه و سفارشی‌سازی"
 description: "افزودن درگاه پرداخت سفارشی، گسترش AvailabilityCalculator، و الگوهای توسعه افزونه."
 ---
@@ -12,10 +12,10 @@ description: "افزودن درگاه پرداخت سفارشی، گسترش Ava
 ```php
 namespace MyPlugin\Gateways;
 
-use Nowbat\Gateways\PaymentGatewayInterface;
-use Nowbat\Gateways\PaymentRequestResult;
-use Nowbat\Gateways\PaymentVerifyResult;
-use Nowbat\Gateways\PaymentRefundResult;
+use Pronobat\Gateways\PaymentGatewayInterface;
+use Pronobat\Gateways\PaymentRequestResult;
+use Pronobat\Gateways\PaymentVerifyResult;
+use Pronobat\Gateways\PaymentRefundResult;
 
 class MyGateway implements PaymentGatewayInterface {
 
@@ -72,7 +72,7 @@ class MyGateway implements PaymentGatewayInterface {
 ### ۲. ثبت درگاه با فیلتر
 
 ```php
-add_filter( 'nowbat_payment_gateways', function( array $gateways ) {
+add_filter( 'pronobat_payment_gateways', function( array $gateways ) {
     $gateways['my_gateway'] = \MyPlugin\Gateways\MyGateway::class;
     return $gateways;
 } );
@@ -81,11 +81,11 @@ add_filter( 'nowbat_payment_gateways', function( array $gateways ) {
 ### ۳. تنظیمات درگاه (اختیاری)
 
 ```php
-add_action( 'nowbat_payment_settings_fields', function() {
+add_action( 'pronobat_payment_settings_fields', function() {
     ?>
     <div data-gateway="my_gateway">
         <label><?php esc_html_e( 'API Key', 'my-plugin' ); ?></label>
-        <input type="text" name="nowbat_settings[payments][my_gateway][api_key]" />
+        <input type="text" name="pronobat_settings[payments][my_gateway][api_key]" />
     </div>
     <?php
 } );
@@ -95,10 +95,10 @@ add_action( 'nowbat_payment_settings_fields', function() {
 
 ## گسترش AvailabilityCalculator
 
-برای تغییر منطق بازه‌های خالی از فیلتر `nowbat_available_slots` استفاده کنید:
+برای تغییر منطق بازه‌های خالی از فیلتر `pronobat_available_slots` استفاده کنید:
 
 ```php
-add_filter( 'nowbat_available_slots', function( array $slots, int $staff_id, string $date, int $service_id ) {
+add_filter( 'pronobat_available_slots', function( array $slots, int $staff_id, string $date, int $service_id ) {
     // مثال: حذف بازه‌های بعد از ساعت ۱۷ برای سرویس شماره ۵
     if ( $service_id === 5 ) {
         $slots = array_filter( $slots, fn($s) => substr( $s['start'], 0, 2 ) < 17 );

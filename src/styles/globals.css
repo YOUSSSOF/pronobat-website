@@ -281,11 +281,24 @@ img {
     margin: 2rem 0;
 }
 
+/* Wrap tables in a scrollable container on narrow screens */
 .prose-pronobat table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1.5rem;
     font-size: 0.9375rem;
+}
+
+/* Table scroll wrapper — injected by the MDX table component */
+.prose-pronobat .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+}
+
+.prose-pronobat .table-wrapper table {
+    margin-bottom: 0;
 }
 
 .prose-pronobat th {

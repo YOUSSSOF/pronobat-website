@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: pageUrl,
       title: t("meta_title"),
       description: t("meta_description"),
-      siteName: "نوبت",
+      siteName: "ProNobat",
     },
   };
 }
