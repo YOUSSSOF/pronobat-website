@@ -13,13 +13,13 @@ description: "پیکربندی کاوه‌نگار، ملی‌پیامک، آی�
 
 | ارائه‌دهنده | احراز هویت |
 |---|---|
-| کاوه‌نگار | API Key |
-| ملی‌پیامک | نام‌کاربری / رمز عبور یا توکن |
+| کاوه‌نگار | API Key + خط ارسال |
+| ملی‌پیامک | نام‌کاربری / رمز عبور + خط ارسال |
 | آی‌پی‌پنل | Access Key + خط ارسال |
 
 ## سقف روزانه ارسال
 
-- **پیش‌فرض:** ۱۰۰ پیامک در روز
+- **پیش‌فرض:** ۵۰۰ پیامک در روز (کلید `sms.daily_cap`)
 - این محدودیت از ارسال ناخواسته و هزینه اضافی جلوگیری می‌کند.
 - شمارنده در نیمه‌شب (به وقت ایران) ریست می‌شود.
 
@@ -39,26 +39,32 @@ description: "پیکربندی کاوه‌نگار، ملی‌پیامک، آی�
 
 | توکن | مقدار |
 |---|---|
+| `{booking_ref}` | کد رزرو |
 | `{customer_name}` | نام مشتری |
 | `{service_name}` | نام خدمت |
 | `{staff_name}` | نام کارمند |
-| `{date}` | تاریخ جلالی |
+| `{date_jalali}` | تاریخ جلالی |
 | `{time}` | ساعت نوبت |
-| `{business_name}` | نام کسب‌وکار |
-| `{cancel_link}` | لینک لغو |
+| `{price}` | مبلغ |
+| `{status}` | وضعیت نوبت |
 
-مثال پیش‌فرض تأییدیه:
+<Callout type="info">
+توکن‌های لینک مانند `{cancel_link}` و `{reschedule_link}` در قالب‌های **ایمیل** در دسترس‌اند.
+</Callout>
+
+مثال پیش‌فرض تأییدیه (رویداد `booking.created`):
 ```
-{customer_name} عزیز، نوبت شما برای {service_name} در تاریخ {date} ساعت {time} با موفقیت ثبت شد.
-— {business_name}
+نوبت شما با کد {booking_ref} برای {service_name} در تاریخ {date_jalali} ساعت {time} ثبت شد.
 ```
 
 ## فیلتر کردن پیام قبل از ارسال
 
+آرگومان سوم فیلتر، **شناسه‌ی نوبت** است و نام رویداد به‌صورت `booking.created`، `booking.confirmed`، ... است.
+
 ```php
-add_filter( 'pronobat_sms_message', function( string $msg, string $event, array $ctx ) {
+add_filter( 'pronobat_sms_message', function( string $msg, string $event, int $appointment_id ) {
     // اضافه کردن آدرس به پیامک تأییدیه
-    if ( $event === 'appointment_created' ) {
+    if ( $event === 'booking.created' ) {
         $msg .= "\nآدرس: خیابان ولیعصر، پلاک ۱۲";
     }
     return $msg;

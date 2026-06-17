@@ -1,45 +1,55 @@
-﻿---
+---
 title: "نقش‌ها و دسترسی‌ها"
-description: "سیستم permission پرونوبت، ثابت‌های capability، و نحوه اعطای دسترسی به نقش‌های سفارشی."
+description: "سیستم permission پرونوبت، ثابت‌های capability واقعی، و نحوه اعطای دسترسی به نقش‌های سفارشی."
 ---
 
 # نقش‌ها و دسترسی‌ها
 
 ## ثابت‌های Capability
 
+پرونوبت این capability ها را تعریف و بررسی می‌کند (در `ProNobat\Admin\RoleCapabilities`):
+
 | Capability | توضیح |
 |---|---|
-| `pronobat_manage_appointments` | مشاهده، ویرایش، و تغییر وضعیت نوبت‌ها |
-| `pronobat_manage_settings` | ویرایش تنظیمات افزونه |
-| `pronobat_manage_staff` | افزودن و ویرایش کارمندان |
-| `pronobat_manage_services` | افزودن و ویرایش خدمات |
-| `pronobat_view_reports` | مشاهده گزارش‌ها و داشبورد |
-| `pronobat_process_refunds` | درخواست استرداد وجه |
+| `pronobat_manage` | مدیریت کامل: نوبت‌ها، سرویس‌ها، کارمندان، مشتریان، تقویم، اعلان‌ها، پیامک و **تنظیمات** (همه‌ی عملیات نوشتن) |
+| `pronobat_staff_self` | فقط مشاهده‌ی نوبت‌ها/تقویم مرتبط با خود کارمند (دسترسی خواندنی) |
+| `pronobat_view_reports` | مشاهده‌ی گزارش‌ها و داشبورد |
+| `pronobat_view_payments` | مشاهده‌ی فهرست تراکنش‌های پرداخت (فقط خواندن) |
+| `pronobat_manage_payments` | درخواست استرداد وجه و مدیریت پرداخت |
+| `pronobat_finance` | دسترسی مالی (به‌صورت پیش‌فرض به نقش Editor داده می‌شود) |
+
+<Callout type="warning">
+دسترسی‌ها در پرونوبت **درشت‌دانه** هستند. عملیات نوشتن روی نوبت‌ها، سرویس‌ها، کارمندان، مشتریان و تنظیمات همگی با همان `pronobat_manage` کنترل می‌شوند. بنابراین نمی‌توان به کسی اجازه‌ی «ویرایش نوبت‌ها اما نه تنظیمات» را داد؛ هر دو زیر `pronobat_manage` قرار دارند.
+</Callout>
 
 ## نقش‌های پیش‌فرض
 
+افزونه هنگام فعال‌سازی دو نقش اختصاصی می‌سازد و به نقش‌های `administrator` و `editor` نیز دسترسی می‌دهد:
+
 | نقش وردپرس | Capability های پرونوبت |
 |---|---|
-| `administrator` | همه |
-| `pronobat_manager` | همه به جز تنظیمات سیستمی |
-| `pronobat_staff` | فقط نوبت‌های خود + `pronobat_manage_appointments` |
+| `administrator` (مدیر اصلی) | همه |
+| `pronobat_manager` (مدیر پرو نوبت) | `pronobat_manage` + `pronobat_view_reports` + `pronobat_view_payments` — همه‌چیز به‌جز استرداد وجه |
+| `pronobat_staff` (کارمند) | `pronobat_staff_self` — فقط مشاهده‌ی نوبت‌های خود |
+| `editor` (ویرایشگر) | `pronobat_finance` + `pronobat_view_reports` + `pronobat_view_payments` — دسترسی مالی فقط‌خواندنی |
 
 ## اعطای دسترسی به نقش سفارشی
 
-برای دادن دسترسی پرونوبت به نقش دلخواه خود:
+برای دادن دسترسی پرونوبت به یک نقش دلخواه:
 
 ```php
-add_action( 'after_setup_theme', function() {
+add_action( 'init', function() {
     $role = get_role( 'editor' ); // نام نقش خود را اینجا وارد کنید
     if ( ! $role ) return;
 
-    $role->add_cap( 'pronobat_manage_appointments' );
+    // دسترسی فقط‌خواندنی به گزارش‌ها و پرداخت‌ها
     $role->add_cap( 'pronobat_view_reports' );
+    $role->add_cap( 'pronobat_view_payments' );
 } );
 ```
 
-<Callout type="warning">
-این کد را فقط یک بار اجرا کنید (مثلاً در `functions.php` تم یا یک افزونه). به دلیل ذخیره‌شدن capability در پایگاه داده، هر بار اجرا بی‌اثر است اما نیاز به اجرای مجدد ندارد.
+<Callout type="info">
+این کد را فقط یک بار اجرا کنید (مثلاً در `functions.php` تم یا یک افزونه). capability ها در پایگاه داده ذخیره می‌شوند، پس هر بار اجرا بی‌اثر است اما نیاز به تکرار ندارد.
 </Callout>
 
 ## سلب دسترسی
@@ -47,26 +57,28 @@ add_action( 'after_setup_theme', function() {
 ```php
 $role = get_role( 'author' );
 if ( $role ) {
-    $role->remove_cap( 'pronobat_manage_appointments' );
+    $role->remove_cap( 'pronobat_view_reports' );
 }
 ```
 
 ## بررسی دسترسی در کد سفارشی
 
 ```php
-if ( current_user_can( 'pronobat_manage_appointments' ) ) {
+if ( current_user_can( 'pronobat_manage' ) ) {
     // نمایش دکمه مدیریت
 }
 ```
 
 ## امنیت REST API
 
-هر route مدیریتی پرونوبت دارای `permission_callback` است:
+هر route مدیریتی پرونوبت دارای `permission_callback` است. برای مثال، نوشتن روی نوبت‌ها:
 
 ```php
 'permission_callback' => function() {
-    return current_user_can( 'pronobat_manage_appointments' );
+    return current_user_can( 'pronobat_manage' );
 },
 ```
 
-پنهان کردن دکمه‌ها در رابط کاربری **جایگزین** بررسی permission سرور‌سایدی نیست.
+مسیرهای خواندنی (مانند فهرست نوبت‌ها) `pronobat_manage` یا `pronobat_staff_self` را می‌پذیرند؛ استرداد وجه `pronobat_manage_payments` را می‌خواهد.
+
+پنهان کردن دکمه‌ها در رابط کاربری **جایگزین** بررسی permission سمت سرور نیست.

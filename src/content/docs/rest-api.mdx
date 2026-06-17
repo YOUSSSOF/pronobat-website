@@ -22,15 +22,20 @@ X-WP-Nonce: {nonce از wp_create_nonce('wp_rest')}
 
 | مسیر | محدودیت |
 |---|---|
-| `GET /slots` | ۱۰ درخواست/دقیقه/IP |
-| `POST /appointments` | ۳ درخواست/دقیقه/IP |
+| `GET /public/services` · `GET /public/staff` | ۳۰ درخواست/دقیقه/IP |
+| `GET /public/slots` · `GET /public/slots/calendar` | ۱۰ درخواست/دقیقه/IP |
+| `POST /public/appointments` | ۳ درخواست/دقیقه/IP |
+| `POST /public/cancel/{token}` · `POST /public/reschedule/{token}` | ۳ درخواست/دقیقه/IP |
+| `GET,POST /public/payment/verify` | ۶۰ درخواست/دقیقه/IP |
 
 ## مسیرهای عمومی
+
+تمام مسیرهای عمومی زیر `pronobat/v1/public/` قرار دارند.
 
 ### دریافت بازه‌های زمانی خالی
 
 ```
-GET /pronobat/v1/slots
+GET /pronobat/v1/public/slots
 ```
 
 **پارامترها:**
@@ -55,7 +60,7 @@ GET /pronobat/v1/slots
 ### ثبت نوبت
 
 ```
-POST /pronobat/v1/appointments
+POST /pronobat/v1/public/appointments
 ```
 
 **بدنه درخواست:**
@@ -85,43 +90,58 @@ POST /pronobat/v1/appointments
 
 ## مسیرهای مدیریتی
 
+مسیرهای مدیریتی پیشوند `/admin/` ندارند؛ هر کنترلر زیر `pronobat/v1/` با نام منبع خود ثبت می‌شود (مثلاً `appointments`, `customers`, `payments`). همه به هدر `X-WP-Nonce` نیاز دارند.
+
 ### دریافت لیست نوبت‌ها
 
 ```
-GET /pronobat/v1/admin/appointments
+GET /pronobat/v1/appointments
 ```
 
-**پارامترها:** `status`, `date_from`, `date_to`, `service_id`, `staff_id`, `page`, `per_page`
+**پارامترها:** `status` (آرایه)، `date_from`، `date_to`، `service_id`، `staff_id`، `customer_id`، `payment_status`، `search`، `page`، `per_page`، `orderby`، `order`
 
-**دسترسی مورد نیاز:** `pronobat_manage_appointments`
+**دسترسی مورد نیاز:** `pronobat_manage` یا `pronobat_staff_self` (کارمند فقط نوبت‌های خود را می‌بیند)
 
 ### تغییر وضعیت نوبت
 
-```
-PATCH /pronobat/v1/admin/appointments/{id}/status
-```
+تغییر وضعیت از طریق به‌روزرسانی خود نوبت انجام می‌شود (فیلد `status` در بدنه):
 
-**بدنه:**
+```
+PUT,PATCH /pronobat/v1/appointments/{id}
+```
 
 ```json
 { "status": "confirmed" }
 ```
 
-**وضعیت‌های مجاز:** `pending`, `confirmed`, `cancelled`, `completed`, `no_show`
+**وضعیت‌های مجاز:** `pending`، `pending_payment`، `confirmed`، `cancelled`، `completed`، `no_show`
+
+**دسترسی:** `pronobat_manage`
+
+برای عملیات خاص، مسیرهای اختصاصی هم وجود دارد:
+
+```
+POST /pronobat/v1/appointments/{id}/cancel
+POST /pronobat/v1/appointments/{id}/reschedule
+POST /pronobat/v1/appointments/{id}/mark_attended
+POST /pronobat/v1/appointments/{id}/make_recurring
+```
 
 ### درخواست استرداد وجه
 
+استرداد از طریق کنترلر پرداخت‌ها انجام می‌شود (نه نوبت‌ها):
+
 ```
-POST /pronobat/v1/admin/appointments/{id}/refund
+POST /pronobat/v1/payments/{id}/refund
 ```
 
-**دسترسی:** `pronobat_manage_settings`
+**دسترسی:** `pronobat_manage_payments`
 
 ## کدهای خطا
 
 | کد | معنی |
 |---|---|
-| `rest_forbidden` | دسترسی رد شد |
+| `pronobat_forbidden` | دسترسی رد شد |
 | `pronobat_slot_taken` | بازه زمانی رزرو شده |
 | `pronobat_rate_limited` | درخواست‌های بیش از حد |
 | `pronobat_payment_failed` | خطا در پرداخت |

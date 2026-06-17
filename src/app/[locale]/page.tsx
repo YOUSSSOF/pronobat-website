@@ -98,10 +98,10 @@ export default async function HomePage({ params }: Props) {
           title={t("title")}
           description={t("description")}
           bullets={[t("bullet_1"), t("bullet_2"), t("bullet_3"), t("bullet_4")]}
-          imageSrc="/images/screenshot-dashboard.svg"
+          imageSrc="/images/screenshot-dashboard.png"
           imageAlt={t("image_alt")}
-          imageWidth={600}
-          imageHeight={400}
+          imageWidth={1600}
+          imageHeight={1000}
         />
 
         {/* 6. Booking Wizard (reversed) */}
@@ -115,10 +115,10 @@ export default async function HomePage({ params }: Props) {
             tWizard("bullet_3"),
             tWizard("bullet_4"),
           ]}
-          imageSrc="/images/screenshot-booking-wizard.svg"
+          imageSrc="/images/screenshot-booking-wizard.png"
           imageAlt={tWizard("image_alt")}
-          imageWidth={600}
-          imageHeight={400}
+          imageWidth={1240}
+          imageHeight={1184}
           reverse
         />
 
@@ -133,10 +133,10 @@ export default async function HomePage({ params }: Props) {
             tPayments("bullet_3"),
             tPayments("bullet_4"),
           ]}
-          imageSrc="/images/screenshot-payment-gateways.svg"
+          imageSrc="/images/screenshot-payment-gateways.png"
           imageAlt={tPayments("image_alt")}
-          imageWidth={600}
-          imageHeight={400}
+          imageWidth={1600}
+          imageHeight={1000}
         />
 
         {/* 8. SMS Notifications (reversed) */}
@@ -145,10 +145,10 @@ export default async function HomePage({ params }: Props) {
           title={tSms("title")}
           description={tSms("description")}
           bullets={[tSms("bullet_1"), tSms("bullet_2"), tSms("bullet_3"), tSms("bullet_4")]}
-          imageSrc="/images/screenshot-sms-notifications.svg"
+          imageSrc="/images/screenshot-sms-notifications.png"
           imageAlt={tSms("image_alt")}
-          imageWidth={600}
-          imageHeight={400}
+          imageWidth={1600}
+          imageHeight={1000}
           reverse
         />
 
@@ -163,10 +163,10 @@ export default async function HomePage({ params }: Props) {
             tReports("bullet_3"),
             tReports("bullet_4"),
           ]}
-          imageSrc="/images/screenshot-reports.svg"
+          imageSrc="/images/screenshot-reports.png"
           imageAlt={tReports("image_alt")}
-          imageWidth={600}
-          imageHeight={400}
+          imageWidth={1600}
+          imageHeight={1000}
         />
 
         {/* 10. Feature grid */}

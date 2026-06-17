@@ -29,13 +29,13 @@ description: "راه‌اندازی درگاه زرین‌پال در نوبت �
 
 ## URL بازگشت
 
-پرونوبت به‌طور خودکار آدرس بازگشت را تنظیم می‌کند:
+پرونوبت هنگام ایجاد تراکنش، آدرس بازگشت (Callback) زیر را به درگاه می‌فرستد:
 
 ```
-https://example.com/wp-json/pronobat/v1/payments/verify/zarinpal
+https://example.com/wp-json/pronobat/v1/public/payment/verify
 ```
 
-این آدرس را در پنل زرین‌پال ثبت کنید.
+این endpoint پس از تأیید سمت سرور، کاربر را به صفحه‌ی `/booking/success` یا `/booking/failed` هدایت می‌کند. اگر پنل زرین‌پال نیاز به ثبت دامنه/آدرس بازگشت دارد، همین آدرس را ثبت کنید.
 
 ## خطاهای رایج
 

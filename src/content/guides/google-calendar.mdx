@@ -54,11 +54,11 @@ description: "ساخت OAuth2 App در Google Cloud Console، تنظیم Redirec
 
 - Application type: **Web application**
 - نام: «ProNobat WordPress»
-- Authorized redirect URIs: آدرس زیر را اضافه کنید:
+- Authorized redirect URIs: آدرس callback اتصال کارمند را اضافه کنید (شناسه‌ی کارمند در مسیر قرار دارد):
   ```
-  https://example.com/wp-json/pronobat/v1/google-calendar/callback
+  https://example.com/wp-json/pronobat/v1/staff/{staff_id}/gcal_oauth_callback
   ```
-  (به جای `example.com` آدرس دامنه سایت خود را بگذارید)
+  (به جای `example.com` دامنه‌ی سایت و به جای `{staff_id}` شناسه‌ی کارمند را بگذارید)
 
 ### کپی Client ID و Client Secret
 
@@ -72,19 +72,13 @@ description: "ساخت OAuth2 App در Google Cloud Console، تنظیم Redirec
 
 <Steps>
 
-### رفتن به تنظیمات
-
-در وردپرس، به **پرونوبت ← تنظیمات ← یکپارچه‌سازی ← Google Calendar** بروید.
-
 ### وارد کردن Credentials
 
-- فیلد **Client ID**: مقدار کپی‌شده را وارد کنید
-- فیلد **Client Secret**: مقدار کپی‌شده را وارد کنید
-- حالت: **freebusy** برای شروع (فقط مشغولیت سنجیده می‌شود)
+Client ID و Client Secret را در تنظیمات گوگل تقویم پرونوبت وارد کنید (کلیدهای `google.client_id` و `google.client_secret`).
 
 ### ذخیره
 
-**ذخیره تنظیمات** را بزنید.
+تنظیمات را ذخیره کنید. پس از اتصال هر کارمند، پرونوبت هم بازه‌های مشغول او را از لیست خالی‌ها حذف می‌کند و هم نوبت‌های جدید را به‌عنوان رویداد در تقویم او ثبت می‌کند.
 
 </Steps>
 

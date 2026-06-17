@@ -1,56 +1,67 @@
-﻿---
+---
 title: "نقش‌های سفارشی و دسترسی‌ها"
-description: "ایجاد نقش «منشی ارشد» با دسترسی مدیریت نوبت‌ها اما بدون دسترسی به تنظیمات — با مثال کد کامل."
+description: "مدل دسترسی پرونوبت و ساخت نقش‌های محدود واقعی — با مثال کد کامل."
 ---
 
 # نقش‌های سفارشی و دسترسی‌ها
 
-در این راهنما یک نقش سفارشی وردپرس می‌سازیم که به کارمند اجرایی دسترسی کافی برای مدیریت نوبت‌ها بدهد، اما نه به تنظیمات حساس افزونه.
+در این راهنما مدل دسترسی پرونوبت را می‌بینیم و یک نقش وردپرسی محدود می‌سازیم که با capability های **واقعی** افزونه کار می‌کند.
 
-## سناریو
+## مدل دسترسی پرونوبت
 
-یک منشی دارید که باید بتواند:
-- ✅ لیست نوبت‌ها را ببیند
-- ✅ وضعیت نوبت را تغییر دهد
-- ✅ گزارش‌های اولیه را ببیند
-- ❌ تنظیمات افزونه را ویرایش نکند
-- ❌ درگاه‌های پرداخت را تغییر ندهد
-- ❌ کارمندان و سرویس‌ها را حذف نکند
+دسترسی‌ها در پرونوبت درشت‌دانه هستند. ثابت‌های اصلی:
+
+| Capability | اجازه می‌دهد |
+|---|---|
+| `pronobat_manage` | مدیریت کامل — نوبت‌ها، سرویس‌ها، کارمندان، مشتریان، اعلان‌ها و **تنظیمات** |
+| `pronobat_staff_self` | فقط مشاهده‌ی نوبت‌های خودِ کارمند |
+| `pronobat_view_reports` | مشاهده‌ی گزارش‌ها و داشبورد |
+| `pronobat_view_payments` | مشاهده‌ی تراکنش‌های پرداخت (فقط خواندن) |
+| `pronobat_manage_payments` | استرداد وجه |
+| `pronobat_finance` | دسترسی مالی (پیش‌فرض روی نقش Editor) |
+
+<Callout type="warning">
+نکته‌ی مهم: ویرایش نوبت‌ها و ویرایش تنظیمات هر دو با همان `pronobat_manage` کنترل می‌شوند. پس **نمی‌توان** نقشی ساخت که نوبت‌ها را ویرایش کند اما به تنظیمات دسترسی نداشته باشد. برای دسترسی محدود، از نقش‌های فقط‌خواندنی یا نقش آماده‌ی «کارمند» استفاده کنید.
+</Callout>
+
+## نقش‌های آماده
+
+- **مدیر پرو نوبت** (`pronobat_manager`) — همه‌چیز به‌جز استرداد وجه.
+- **کارمند** (`pronobat_staff`) — فقط مشاهده‌ی نوبت‌های خودش (`pronobat_staff_self`).
+
+اگر یکی از این دو نیاز شما را برآورده می‌کند، کافی است نقش کاربر را در **کاربران ← همه کاربران** به آن تغییر دهید.
 
 ---
 
-## مرحله ۱: ساخت نقش سفارشی
+## سناریو: دستیار گزارش‌ها (فقط‌خواندنی)
 
-کد زیر را در فایل `functions.php` تم خود (یا یک افزونه سفارشی) اضافه کنید:
+فرض کنید می‌خواهید کسی فقط بتواند گزارش‌ها و تراکنش‌ها را ببیند، بدون اجازه‌ی تغییر چیزی. این جداسازی **شدنی** است.
+
+### مرحله ۱: ساخت نقش سفارشی
+
+کد زیر را در `functions.php` تم خود (یا یک افزونه‌ی سفارشی) اضافه کنید:
 
 ```php
 /**
- * ساخت نقش «منشی نوبت» با دسترسی‌های محدود
+ * ساخت نقش «دستیار گزارش‌ها» با دسترسی فقط‌خواندنی
  * این تابع یک بار اجرا می‌شود (هنگام فعال‌سازی تم یا افزونه)
  */
-function my_create_pronobat_receptionist_role(): void {
-    // اگر نقش از قبل وجود داشت، چیزی نساز
-    if ( get_role( 'pronobat_receptionist' ) ) {
-        return;
+function my_create_pronobat_reports_assistant_role(): void {
+    if ( get_role( 'pronobat_reports_assistant' ) ) {
+        return; // اگر نقش از قبل وجود داشت، چیزی نساز
     }
 
     add_role(
-        'pronobat_receptionist',
-        'منشی نوبت‌دهی',
+        'pronobat_reports_assistant',
+        'دستیار گزارش‌ها',
         [
-            // دسترسی‌های پایه وردپرس
-            'read'                         => true,
-
-            // دسترسی‌های نوبت
-            'pronobat_manage_appointments'   => true,
-            'pronobat_view_reports'          => true,
-
-            // دسترسی به مدیریت سرویس‌ها (فقط مشاهده و ویرایش، نه حذف)
-            'pronobat_manage_services'       => true,
+            'read'                  => true, // دسترسی پایه وردپرس
+            'pronobat_view_reports' => true, // مشاهده گزارش‌ها و داشبورد
+            'pronobat_view_payments'=> true, // مشاهده تراکنش‌ها (فقط خواندن)
         ]
     );
 }
-add_action( 'init', 'my_create_pronobat_receptionist_role' );
+add_action( 'init', 'my_create_pronobat_reports_assistant_role' );
 ```
 
 <Callout type="info">
@@ -61,7 +72,7 @@ add_action( 'init', 'my_create_pronobat_receptionist_role' );
 
 ## مرحله ۲: اضافه کردن دسترسی به نقش موجود
 
-اگر می‌خواهید دسترسی پرونوبت را به یک نقش موجود (مثلاً Editor) بدهید:
+اگر می‌خواهید دسترسی فقط‌خواندنی پرونوبت را به یک نقش موجود (مثلاً Editor) بدهید:
 
 ```php
 function my_grant_pronobat_caps_to_editor(): void {
@@ -70,8 +81,8 @@ function my_grant_pronobat_caps_to_editor(): void {
         return;
     }
 
-    $role->add_cap( 'pronobat_manage_appointments' );
     $role->add_cap( 'pronobat_view_reports' );
+    $role->add_cap( 'pronobat_view_payments' );
 }
 add_action( 'init', 'my_grant_pronobat_caps_to_editor' );
 ```
@@ -88,11 +99,11 @@ add_action( 'init', 'my_grant_pronobat_caps_to_editor' );
 
 ### ویرایش کاربر
 
-روی نام کاربر منشی کلیک کنید.
+روی نام کاربر کلیک کنید.
 
 ### تغییر نقش
 
-فیلد **نقش** را به **منشی نوبت‌دهی** تغییر دهید.
+فیلد **نقش** را به نقش موردنظر (مثلاً **دستیار گزارش‌ها**) تغییر دهید.
 
 ### ذخیره
 
@@ -102,21 +113,20 @@ add_action( 'init', 'my_grant_pronobat_caps_to_editor' );
 
 ---
 
-## جدول کامل دسترسی‌ها
+## جدول دسترسی‌ها برای نقش‌های محدود
 
-| Capability | توضیح | پیشنهاد برای منشی |
+| Capability | دستیار گزارش‌ها | کارمند |
 |---|---|---|
-| `pronobat_manage_appointments` | مشاهده و مدیریت نوبت‌ها | ✅ بده |
-| `pronobat_manage_settings` | تنظیمات افزونه | ❌ نده |
-| `pronobat_manage_staff` | افزودن/ویرایش کارمندان | بستگی دارد |
-| `pronobat_manage_services` | افزودن/ویرایش سرویس‌ها | بستگی دارد |
-| `pronobat_view_reports` | مشاهده گزارش‌ها | ✅ بده |
-| `pronobat_process_refunds` | درخواست استرداد وجه | ❌ نده |
+| `pronobat_view_reports` | ✅ | — |
+| `pronobat_view_payments` | ✅ | — |
+| `pronobat_staff_self` | — | ✅ |
+| `pronobat_manage` | ❌ (دسترسی کامل) | ❌ |
+| `pronobat_manage_payments` | ❌ | ❌ |
 
 ---
 
 ## پاک کردن نقش (در صورت نیاز)
 
 ```php
-remove_role( 'pronobat_receptionist' );
+remove_role( 'pronobat_reports_assistant' );
 ```

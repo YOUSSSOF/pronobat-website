@@ -9,61 +9,84 @@ description: "افزودن درگاه پرداخت سفارشی، گسترش Ava
 
 ### ۱. پیاده‌سازی `PaymentGatewayInterface`
 
+رابط `PaymentGatewayInterface` پنج متد دارد که **همه** باید پیاده‌سازی شوند: `request`، `verify`، `refund`، `get_name`، و `supports_refund`. توجه کنید که مبلغ‌ها همگی به **تومان** (`int`) هستند.
+
 ```php
 namespace MyPlugin\Gateways;
 
-use Pronobat\Gateways\PaymentGatewayInterface;
-use Pronobat\Gateways\PaymentRequestResult;
-use Pronobat\Gateways\PaymentVerifyResult;
-use Pronobat\Gateways\PaymentRefundResult;
+use ProNobat\Gateways\PaymentGatewayInterface;
+use ProNobat\Gateways\PaymentRequestResult;
+use ProNobat\Gateways\PaymentVerifyResult;
+use ProNobat\Gateways\PaymentRefundResult;
+use ProNobat\Settings\Settings;
 
 class MyGateway implements PaymentGatewayInterface {
 
-    private string $api_key;
-
-    public function __construct( array $settings ) {
-        $this->api_key = $settings['api_key'] ?? '';
+    public function get_name(): string {
+        return 'my_gateway'; // باید با کلید Settings و مقدار enum پایگاه داده مطابقت داشته باشد
     }
 
-    public function request( int $amount, string $callback_url, array $meta = [] ): PaymentRequestResult {
-        // ارسال درخواست به API درگاه
+    public function supports_refund(): bool {
+        return false; // اگر درگاه استرداد خودکار ندارد، false برگردانید
+    }
+
+    private function api_key(): string {
+        // تنظیمات درگاه زیر payments.<slug> ذخیره می‌شود
+        return (string) Settings::instance()->get_secret( 'payments.my_gateway.api_key' );
+    }
+
+    public function request(
+        int $amount_toman,
+        string $description,
+        string $callback_url,
+        array $metadata = []
+    ): PaymentRequestResult {
         $response = wp_remote_post( 'https://mygateway.com/api/payment', [
             'body' => [
-                'api_key'      => $this->api_key,
-                'amount'       => $amount,
+                'api_key'      => $this->api_key(),
+                'amount'       => $amount_toman,
+                'description'  => $description,
                 'callback_url' => $callback_url,
             ],
         ] );
 
-        $body = json_decode( wp_remote_retrieve_body( $response ), true );
+        $body = json_decode( (string) wp_remote_retrieve_body( $response ), true );
 
         return new PaymentRequestResult(
-            success:      ! is_wp_error( $response ) && $body['status'] === 'ok',
-            redirect_url: $body['payment_url'] ?? '',
-            authority:    $body['authority'] ?? '',
-            error:        $body['message'] ?? ''
+            success:      ! is_wp_error( $response ) && ( $body['status'] ?? '' ) === 'ok',
+            authority:    (string) ( $body['authority'] ?? '' ),
+            redirect_url: (string) ( $body['payment_url'] ?? '' ),
+            error:        (string) ( $body['message'] ?? '' ),
         );
     }
 
-    public function verify( string $authority, int $amount ): PaymentVerifyResult {
+    public function verify(
+        string $authority,
+        int $amount_toman,
+        array $callback_data = []
+    ): PaymentVerifyResult {
         $response = wp_remote_post( 'https://mygateway.com/api/verify', [
             'body' => [
-                'api_key'   => $this->api_key,
+                'api_key'   => $this->api_key(),
                 'authority' => sanitize_text_field( $authority ),
-                'amount'    => $amount,
+                'amount'    => $amount_toman,
             ],
         ] );
 
-        $body = json_decode( wp_remote_retrieve_body( $response ), true );
+        $body = json_decode( (string) wp_remote_retrieve_body( $response ), true );
 
         return new PaymentVerifyResult(
-            success: ! is_wp_error( $response ) && $body['status'] === 'verified',
-            ref_id:  $body['ref_id'] ?? '',
-            error:   $body['message'] ?? ''
+            success: ! is_wp_error( $response ) && ( $body['status'] ?? '' ) === 'verified',
+            ref_id:  (string) ( $body['ref_id'] ?? '' ),
+            error:   (string) ( $body['message'] ?? '' ),
         );
     }
 
-    public function refund( string $ref_id, int $amount ): PaymentRefundResult {
+    public function refund(
+        string $gateway_ref,
+        int $amount_toman,
+        string $reason = ''
+    ): PaymentRefundResult {
         return new PaymentRefundResult( success: false, error: 'manual_refund_required' );
     }
 }
@@ -71,25 +94,18 @@ class MyGateway implements PaymentGatewayInterface {
 
 ### ۲. ثبت درگاه با فیلتر
 
+مقدار هر کلید باید یک **نمونه (instance)** از کلاس درگاه باشد؛ افزونه با `instanceof` بررسی می‌کند و نام کلاس (`::class`) پذیرفته نمی‌شود.
+
 ```php
 add_filter( 'pronobat_payment_gateways', function( array $gateways ) {
-    $gateways['my_gateway'] = \MyPlugin\Gateways\MyGateway::class;
+    $gateways['my_gateway'] = new \MyPlugin\Gateways\MyGateway();
     return $gateways;
 } );
 ```
 
-### ۳. تنظیمات درگاه (اختیاری)
-
-```php
-add_action( 'pronobat_payment_settings_fields', function() {
-    ?>
-    <div data-gateway="my_gateway">
-        <label><?php esc_html_e( 'API Key', 'my-plugin' ); ?></label>
-        <input type="text" name="pronobat_settings[payments][my_gateway][api_key]" />
-    </div>
-    <?php
-} );
-```
+<Callout type="info">
+تنظیمات درگاه سفارشی شما زیر کلید `payments.my_gateway` در آرایه‌ی Settings ذخیره می‌شود و با `Settings::instance()->get_secret( 'payments.my_gateway.api_key' )` قابل خواندن است. پنل تنظیمات پرونوبت مبتنی بر React است؛ بنابراین برای افزودن فیلد سفارشی به رابط کاربری باید آن SPA را گسترش دهید یا تنظیمات را از طریق فیلتر/کد خود مدیریت کنید.
+</Callout>
 
 ---
 

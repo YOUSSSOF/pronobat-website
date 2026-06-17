@@ -1,20 +1,20 @@
 ---
 title: "هوک‌ها (Actions & Filters)"
-description: "مرجع کامل action ها و filter های نوبت برای توسعه‌دهندگان."
+description: "مرجع کامل action ها و filter های پرونوبت با امضای دقیق پارامترها برای توسعه‌دهندگان."
 ---
 
 # هوک‌ها (Actions & Filters)
+
+امضای پارامترها در این صفحه دقیقاً با کد افزونه مطابقت دارد. به تعداد و ترتیب آرگومان‌ها در `add_action`/`add_filter` دقت کنید.
 
 ## Actions
 
 ### `pronobat_appointment_created`
 
-هنگامی که یک نوبت جدید ثبت می‌شود فراخوانی می‌شود (قبل از تأیید نهایی).
+هنگام ثبت یک نوبت جدید فراخوانی می‌شود. آرگومان دوم (آرایه‌ی نوبت) در نوبت‌های فرزندِ سری تکرارشونده ممکن است ارسال نشود.
 
 ```php
-add_action( 'pronobat_appointment_created', function( int $id, array $appt ) {
-    // $id: شناسه نوبت
-    // $appt: آرایه کامل داده‌های نوبت
+add_action( 'pronobat_appointment_created', function( int $id, array $appointment ) {
     error_log( "نوبت جدید: #{$id}" );
 }, 10, 2 );
 ```
@@ -23,79 +23,135 @@ add_action( 'pronobat_appointment_created', function( int $id, array $appt ) {
 
 ### `pronobat_appointment_status_changed`
 
-هنگام تغییر وضعیت نوبت فراخوانی می‌شود.
+هنگام تغییر وضعیت نوبت فراخوانی می‌شود. **ترتیب:** ابتدا وضعیت قبلی، سپس وضعیت جدید.
 
 ```php
 add_action( 'pronobat_appointment_status_changed', function(
-    int $id, string $new_status, string $old_status, array $appt
+    int $id, string $old_status, string $new_status
 ) {
-    if ( $new_status === 'confirmed' && $old_status === 'pending' ) {
-        // اطلاع‌رسانی به کارمند
-    }
-}, 10, 4 );
+    // ...
+}, 10, 3 );
+```
+
+---
+
+### `pronobat_appointment_confirmed`
+
+اکشن مشتق‌شده که هنگام تغییر وضعیت به `confirmed` فراخوانی می‌شود. فقط شناسه‌ی نوبت را می‌گیرد.
+
+```php
+add_action( 'pronobat_appointment_confirmed', function( int $id ) {
+    // ارسال اعلان سفارشی هنگام تأیید نوبت
+}, 10, 1 );
 ```
 
 ---
 
 ### `pronobat_appointment_cancelled`
 
-هنگام لغو نوبت — پس از به‌روزرسانی وضعیت در پایگاه داده.
+هنگام لغو نوبت. آرگومان سوم نشان می‌دهد آیا درخواست استرداد همراه لغو بوده است. (در فرزندان سری تکرارشونده فقط `$id` ارسال می‌شود.)
 
 ```php
-add_action( 'pronobat_appointment_cancelled', function( int $id, array $appt ) {
-    // ارسال نوتیفیکیشن داخلی
-}, 10, 2 );
+add_action( 'pronobat_appointment_cancelled', function( int $id, array $appointment, bool $refund ) {
+    // ...
+}, 10, 3 );
 ```
 
 ---
 
 ### `pronobat_appointment_rescheduled`
 
-هنگام تغییر زمان نوبت توسط مدیر.
+هنگام جابه‌جایی زمان نوبت توسط مدیر، با `(int $id, array $appointment)` فراخوانی می‌شود.
 
 ```php
-add_action( 'pronobat_appointment_rescheduled', function( int $id, array $appt ) {
-    // $appt['old_date'] و $appt['old_time'] در دسترس است
+add_action( 'pronobat_appointment_rescheduled', function( int $id, array $appointment ) {
+    // ...
 }, 10, 2 );
 ```
+
+<Callout type="info">
+در مسیر عمومی (جابه‌جایی توسط مشتری با توکن)، این اکشن با امضای `(int $old_id, int $new_id)` فراخوانی می‌شود.
+</Callout>
 
 ---
 
 ### `pronobat_payment_received`
 
-هنگامی که پرداخت موفق تأیید می‌شود.
+پس از تأیید موفق پرداخت توسط درگاه. **چهار** آرگومان دارد:
 
 ```php
-add_action( 'pronobat_payment_received', function( int $appt_id, array $payment ) {
-    // $payment['ref_id'], $payment['amount'], $payment['gateway']
-}, 10, 2 );
+add_action( 'pronobat_payment_received', function(
+    int $payment_id, int $appointment_id, int $amount_toman, string $gateway
+) {
+    // ...
+}, 10, 4 );
 ```
 
 ---
 
 ### `pronobat_payment_refunded`
 
-هنگامی که استرداد وجه انجام می‌شود.
+پس از استرداد وجه. آرگومان سوم پاسخ خام درگاه است.
 
 ```php
-add_action( 'pronobat_payment_refunded', function( int $appt_id, array $payment ) {
-    // ارسال ایمیل سفارشی
-}, 10, 2 );
+add_action( 'pronobat_payment_refunded', function(
+    int $payment_id, int $amount_toman, array $raw
+) {
+    // ...
+}, 10, 3 );
 ```
 
 ---
 
 ### `pronobat_settings_updated`
 
-هنگامی که تنظیمات ذخیره می‌شوند.
+هنگام ذخیره‌ی هر بخش از تنظیمات (یا `'all'` هنگام import).
 
 ```php
 add_action( 'pronobat_settings_updated', function(
     string $section, array $old_settings, array $new_settings
 ) {
-    if ( $section === 'payments' ) {
-        // پاک کردن کش پیکربندی درگاه
-    }
+    if ( $section === 'payments' ) { /* ... */ }
+}, 10, 3 );
+```
+
+---
+
+### `pronobat_customer_anonymized`
+
+پس از ناشناس‌سازی یک مشتری.
+
+```php
+add_action( 'pronobat_customer_anonymized', function( int $customer_id ) {
+    // ...
+}, 10, 1 );
+```
+
+---
+
+### `pronobat_broadcast_notification`
+
+هنگام ارسال پیام گروهی از صفحه‌ی اعلان‌ها.
+
+```php
+add_action( 'pronobat_broadcast_notification', function(
+    string $channel, string $message, int $service_id, int $staff_id
+) {
+    // ...
+}, 10, 4 );
+```
+
+---
+
+### `pronobat_sms_before_send_action`
+
+دقیقاً پیش از ارسال پیامک (فقط اطلاع‌رسانی؛ برای جلوگیری از ارسال از فیلتر `pronobat_sms_before_send` استفاده کنید).
+
+```php
+add_action( 'pronobat_sms_before_send_action', function(
+    string $phone, string $message, string $event
+) {
+    // ...
 }, 10, 3 );
 ```
 
@@ -105,14 +161,14 @@ add_action( 'pronobat_settings_updated', function(
 
 ### `pronobat_available_slots`
 
-لیست بازه‌های خالی را پیش از ارسال به کلاینت فیلتر می‌کند.
+لیست بازه‌های خالی را پیش از ارسال به کلاینت فیلتر می‌کند. هر بازه آرایه‌ای به شکل `{ start, end, capacity_remaining, is_holiday }` است (مقادیر `start`/`end` به‌صورت `'HH:MM'`).
 
 ```php
 add_filter( 'pronobat_available_slots', function(
     array $slots, int $staff_id, string $date, int $service_id
 ) {
-    // حذف بازه ۱۲:۰۰ تا ۱۳:۰۰ برای همه روزها
-    return array_filter( $slots, fn($s) => $s['start'] !== '12:00' );
+    // حذف بازه‌ی ۱۲:۰۰
+    return array_values( array_filter( $slots, fn( $s ) => $s['start'] !== '12:00' ) );
 }, 10, 4 );
 ```
 
@@ -120,24 +176,36 @@ add_filter( 'pronobat_available_slots', function(
 
 ### `pronobat_payment_gateways`
 
-درگاه‌های پرداخت موجود را تغییر می‌دهد. برای افزودن درگاه سفارشی استفاده کنید.
+نقشه‌ی درگاه‌های پرداخت را تغییر می‌دهد. مقدار هر کلید باید یک **نمونه (instance)** از `PaymentGatewayInterface` باشد (افزونه با `instanceof` بررسی می‌کند).
 
 ```php
 add_filter( 'pronobat_payment_gateways', function( array $gateways ) {
-    $gateways['my_gateway'] = MyCustomGateway::class;
+    $gateways['my_gateway'] = new MyCustomGateway();
     return $gateways;
 } );
 ```
 
 ---
 
-### `pronobat_sms_message`
+### `pronobat_appointment_price`
 
-متن پیامک را قبل از ارسال تغییر می‌دهد.
+مبلغ نهایی پرداخت (به **تومان**) را پیش از ایجاد تراکنش تغییر می‌دهد.
 
 ```php
-add_filter( 'pronobat_sms_message', function( string $msg, string $event, array $ctx ) {
-    return $msg . "\n\nبا تشکر از اعتماد شما";
+add_filter( 'pronobat_appointment_price', function( int $amount_toman, int $appointment_id ) {
+    return (int) round( $amount_toman * 0.8 ); // ۲۰٪ تخفیف
+}, 10, 2 );
+```
+
+---
+
+### `pronobat_sms_message`
+
+متن پیامک را قبل از ارسال تغییر می‌دهد. آرگومان سوم **شناسه‌ی نوبت** است.
+
+```php
+add_filter( 'pronobat_sms_message', function( string $message, string $event, int $appointment_id ) {
+    return $message . "\n\nبا تشکر از اعتماد شما";
 }, 10, 3 );
 ```
 
@@ -145,31 +213,18 @@ add_filter( 'pronobat_sms_message', function( string $msg, string $event, array 
 
 ### `pronobat_sms_before_send`
 
-کنترل می‌کند آیا پیامک ارسال شود یا نه.
+تعیین می‌کند پیامک ارسال شود یا نه. آرگومان چهارم **نام رویداد** است. برای لغو ارسال، `false` برگردانید.
 
 ```php
 add_filter( 'pronobat_sms_before_send', function(
-    bool $should_send, string $phone, string $message, array $ctx
+    bool $should_send, string $phone, string $message, string $event
 ) {
-    // بلاک کردن ارسال در ساعت‌های شب
     $hour = (int) current_time( 'H' );
-    if ( $hour >= 23 || $hour < 7 ) return false;
+    if ( $hour >= 23 || $hour < 7 ) return false; // بدون ارسال شبانه
     return $should_send;
 }, 10, 4 );
 ```
 
----
-
-### `pronobat_refund_manual`
-
-مشخص می‌کند آیا استرداد باید به‌صورت دستی انجام شود.
-
-```php
-add_filter( 'pronobat_refund_manual', function(
-    bool $is_manual, int $appt_id, array $payment
-) {
-    // اگر مبلغ بیشتر از ۵ میلیون تومان بود، استرداد را دستی کن
-    if ( $payment['amount'] > 50_000_000 ) return true;
-    return $is_manual;
-}, 10, 3 );
-```
+<Callout type="warning">
+`pronobat_refund_manual` یک هوک نیست؛ بلکه **کد خطایی** (پاسخ HTTP 422) است که هنگام درخواست استرداد برای درگاه‌های بدون پشتیبانی استرداد خودکار (مانند نکست‌پی) بازگردانده می‌شود. برای واکنش به استرداد موفق از اکشن `pronobat_payment_refunded` استفاده کنید.
+</Callout>

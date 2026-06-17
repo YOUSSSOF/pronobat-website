@@ -32,27 +32,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ── Step data ───────────────────────────────────────────────────────────────
 const STEP_CODES = {
-  install: `# دانلود از مخزن وردپرس
-wp plugin install pronobat --activate
+  install: `# آپلود فایل ZIP خریداری‌شده از راستچین
+wp plugin install /path/to/pronobat.zip --activate
 
-# یا آپلود مستقیم فایل ZIP
-wp plugin install /path/to/pronobat.zip --activate`,
+# یا از پیشخوان: افزونه‌ها ← بارگذاری افزونه`,
 
   shortcode: `<!-- قرار دادن فرم رزرو در هر صفحه -->
 [pronobat_booking]
 
 <!-- یا با پیش‌انتخاب خدمت -->
-[pronobat_booking service_id="1"]
+[pronobat_booking service="1"]
 
 <!-- یا با پیش‌انتخاب کارمند -->
-[pronobat_booking staff_id="2"]`,
+[pronobat_booking staff="2"]`,
 
-  notification: `// هوک PHP برای اعلان سفارشی
-add_action( 'pronobat_appointment_confirmed', function( $appointment_id ) {
-    $appointment = pronobat_get_appointment( $appointment_id );
-    // ارسال اعلان سفارشی
-    my_custom_notification( $appointment );
-} );`,
+  notification: `// هوک PHP برای اعلان سفارشی هنگام تأیید نوبت
+add_action( 'pronobat_appointment_confirmed', function( int $appointment_id ) {
+    // ارسال اعلان سفارشی با شناسه‌ی نوبت
+    my_custom_notification( $appointment_id );
+}, 10, 1 );`,
 };
 
 export default async function HowItWorksPage({ params }: Props) {

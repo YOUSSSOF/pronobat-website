@@ -28,23 +28,26 @@ description: "پیکربندی اعلان‌های ایمیل برای مشتر�
 
 ## قالب ایمیل
 
-ایمیل‌ها با قالب HTML ارسال می‌شوند. قالب از پوشه `wp-content/themes/{theme}/pronobat/emails/` بارگذاری می‌شود. اگر این پوشه وجود نداشت، قالب پیش‌فرض افزونه استفاده می‌شود.
+ایمیل‌ها با قالب HTML داخلی افزونه (در `EmailService`) و در جهت RTL ارسال می‌شوند. گزینه‌های قابل تنظیم در تب ایمیل:
 
-برای سفارشی‌سازی قالب، فایل‌های زیر را از `wp-content/plugins/pronobat/templates/emails/` کپی کنید:
+| فیلد | کلید | توضیح |
+|---|---|---|
+| نام فرستنده | `email.from_name` | نام نمایش‌داده‌شده‌ی فرستنده |
+| آدرس فرستنده | `email.from_address` | آدرس From |
+| متن پاورقی | `email.footer_text` | متن انتهای همه‌ی ایمیل‌ها |
+| لوگو | `email.logo_id` | شناسه‌ی رسانه‌ی لوگو |
+| ارسال HTML | `email.html_enabled` | روشن/خاموش بودن قالب HTML |
 
-- `appointment-confirmed.php`
-- `appointment-cancelled.php`
-- `appointment-reminder.php`
+برای ارسال قابل‌اعتماد، SMTP را در همین تب فعال کنید (`email.smtp_enabled` و فیلدهای `email.smtp_host/port/user/pass/encryption`).
 
 ## توکن‌های قالب
 
-همان توکن‌های پیامک در قالب ایمیل هم کار می‌کنند (`{customer_name}`, `{date}` و غیره). علاوه بر آن:
+همان توکن‌های پیامک در قالب ایمیل هم کار می‌کنند: `{booking_ref}`، `{customer_name}`، `{service_name}`، `{staff_name}`، `{date_jalali}`، `{time}`. علاوه بر آن در ایمیل، توکن‌های لینک نیز در دسترس‌اند:
 
 | توکن | مقدار |
 |---|---|
-| `{appointment_id}` | شماره نوبت |
-| `{payment_amount}` | مبلغ پرداخت‌شده |
-| `{booking_link}` | لینک جزئیات نوبت |
+| `{cancel_link}` | لینک لغو نوبت |
+| `{reschedule_link}` | لینک جابه‌جایی/رزرو مجدد |
 
 ## آزمایش ارسال
 

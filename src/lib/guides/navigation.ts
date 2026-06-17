@@ -84,9 +84,9 @@ export const ALL_GUIDES: GuidePage[] = [
     slug: "custom-roles",
     titleFa: "نقش‌های سفارشی و دسترسی‌ها",
     titleEn: "Custom Roles and Capabilities",
-    descriptionFa: "ایجاد نقش «منشی ارشد» با `pronobat_manage_appointments` بدون دسترسی به تنظیمات.",
+    descriptionFa: "مدل دسترسی پرونوبت و ساخت نقش‌های محدود واقعی با capability های `pronobat_view_reports` و `pronobat_staff_self`.",
     descriptionEn:
-      "Create a 'senior receptionist' role with `pronobat_manage_appointments` but no access to settings.",
+      "ProNobat's permission model and building realistic limited roles with the `pronobat_view_reports` and `pronobat_staff_self` capabilities.",
     category: "developer",
     readingTimeMin: 6,
   },

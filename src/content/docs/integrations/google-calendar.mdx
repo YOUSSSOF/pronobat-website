@@ -22,25 +22,20 @@ description: "یکپارچه‌سازی Google Calendar با OAuth2 — همگا
 1. «APIs & Services» ← «Credentials» ← «Create Credentials» ← «OAuth Client ID»
 2. Application type: **Web application**
 3. نام دلخواه وارد کنید
-4. در «Authorized redirect URIs» این آدرس را اضافه کنید:
+4. در «Authorized redirect URIs» آدرس callback اتصال کارمند را اضافه کنید. این آدرس برای هر کارمند شناسه‌ی او را در مسیر دارد:
    ```
-   https://example.com/wp-json/pronobat/v1/google-calendar/callback
+   https://example.com/wp-json/pronobat/v1/staff/{staff_id}/gcal_oauth_callback
    ```
 5. Client ID و Client Secret را کپی کنید
 
 ## پیکربندی در نوبت
 
-مسیر: **پرونوبت ← تنظیمات ← یکپارچه‌سازی ← گوگل تقویم**
+Client ID و Client Secret را در تنظیمات گوگل تقویم پرونوبت وارد کنید (کلیدهای `google.client_id` و `google.client_secret`).
 
-| فیلد | توضیح |
-|---|---|
-| Client ID | از Google Cloud Console |
-| Client Secret | از Google Cloud Console |
-| حالت | `freebusy` یا `full` |
+پس از اتصال، پرونوبت هر دو رفتار زیر را انجام می‌دهد:
 
-**حالت `freebusy`:** فقط بررسی می‌کند کارمند آن بازه مشغول است یا نه — اطلاعات رویداد خوانده نمی‌شود.
-
-**حالت `full`:** نوبت‌های جدید به‌عنوان رویداد در گوگل تقویم ثبت می‌شوند.
+- **بررسی مشغولیت (freebusy):** بازه‌هایی که کارمند در تقویم گوگل مشغول است از لیست بازه‌های خالی حذف می‌شوند.
+- **ثبت رویداد:** نوبت‌های جدید به‌عنوان رویداد در تقویم گوگل کارمند ساخته (و در لغو، حذف) می‌شوند.
 
 ## اتصال حساب گوگل هر کارمند
 
