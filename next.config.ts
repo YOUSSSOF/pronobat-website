@@ -10,6 +10,12 @@ const securityHeaders = [
     value: "on",
   },
   {
+    // Enforce HTTPS for 1 year; include subdomains and request preload listing.
+    // Only applies when the site is served over HTTPS (browsers ignore it over HTTP).
+    key: "Strict-Transport-Security",
+    value: "max-age=31536000; includeSubDomains; preload",
+  },
+  {
     key: "X-Frame-Options",
     value: "SAMEORIGIN",
   },
@@ -33,6 +39,11 @@ const securityHeaders = [
       // In production this is not needed and should be omitted.
       isDev
         ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+        // SECURITY NOTE: 'unsafe-inline' is required here because
+        // src/app/[locale]/layout.tsx inlines a theme-detection script via
+        // dangerouslySetInnerHTML to prevent flash-of-wrong-theme.
+        // To remove 'unsafe-inline', move that script to /public/theme-init.js
+        // and load it with <script src="/theme-init.js" /> instead.
         : "script-src 'self' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
