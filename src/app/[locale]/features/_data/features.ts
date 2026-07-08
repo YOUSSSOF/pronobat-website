@@ -114,7 +114,12 @@ export const FEATURES: Feature[] = [
     icon: "IconMessage",
   },
   {
-    id: "ippanel",
+    id: "smsir",
+    category: "notifications",
+    icon: "IconMessage",
+  },
+  {
+    id: "farazsms",
     category: "notifications",
     icon: "IconMessage",
   },
