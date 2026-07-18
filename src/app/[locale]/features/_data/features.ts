@@ -78,6 +78,11 @@ export const FEATURES: Feature[] = [
     icon: "IconWallet",
   },
   {
+    id: "embeddable_widget",
+    category: "integrations",
+    icon: "IconCode",
+  },
+  {
     id: "zarinpal",
     category: "payments",
     icon: "IconCreditCard",

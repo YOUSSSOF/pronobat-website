@@ -289,6 +289,8 @@
     "elementor_widget_desc": "Drag-and-drop widget in Elementor with pre-selected service and staff options.",
     "shortcode_title": "Shortcode",
     "shortcode_desc": "Use [pronobat_booking] in any page builder or theme with optional parameters.",
+    "embeddable_widget_title": "Embeddable Widget",
+    "embeddable_widget_desc": "Drop the booking form onto any external site with a single script tag — no WordPress required there. Loads a lightweight, theme-independent auto-resizing iframe; copy-paste snippet ready in the admin.",
     "rest_api_title": "Full REST API",
     "rest_api_desc": "Complete endpoint set for appointments, customers, services, and settings with rate limiting.",
     "wp_roles_title": "WordPress Roles & Capabilities",
