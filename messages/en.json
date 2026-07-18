@@ -237,6 +237,8 @@
     "appointment_statuses_desc": "Five statuses: confirmed, pending_payment, pending_confirmation, completed, cancelled — color-coded.",
     "woocommerce_bridge_title": "WooCommerce Bridge",
     "woocommerce_bridge_desc": "Auto-detects WooCommerce and routes online payment through a virtual WC order — any WooCommerce gateway works. Falls back to the native Iranian gateways when WooCommerce is absent.",
+    "deposits_title": "Deposits / Partial Pay",
+    "deposits_desc": "Collect a percentage or fixed deposit online and take the remaining balance on-site. Works with both native gateways and the WooCommerce bridge; admin sees the outstanding balance and clears it in one click.",
     "zarinpal_title": "ZarinPal Gateway",
     "zarinpal_desc": "Full ZarinPal API integration with Sandbox mode and server-to-server verification.",
     "idpay_title": "IDPay Gateway",
