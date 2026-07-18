@@ -68,6 +68,11 @@ export const FEATURES: Feature[] = [
   },
   // ── Payments ──────────────────────────────────────────────────────────────
   {
+    id: "woocommerce_bridge",
+    category: "payments",
+    icon: "IconShoppingCart",
+  },
+  {
     id: "zarinpal",
     category: "payments",
     icon: "IconCreditCard",
