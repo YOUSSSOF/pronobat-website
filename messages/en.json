@@ -85,7 +85,9 @@
     "waitlist_title": "Waitlist",
     "waitlist_desc": "When a day is fully booked, customers can join a waitlist; a cancellation automatically notifies the earliest waiters by SMS. Managed from an admin waitlist page.",
     "funnel_analytics_title": "Funnel Analytics",
-    "funnel_analytics_desc": "Anonymous, privacy-friendly tracking of how visitors move through the booking form — see per-step counts, conversion, and where people drop off, across 7/30/90-day ranges."
+    "funnel_analytics_desc": "Anonymous, privacy-friendly tracking of how visitors move through the booking form — see per-step counts, conversion, and where people drop off, across 7/30/90-day ranges.",
+    "map_view_title": "Marketplace Map View",
+    "map_view_desc": "Show providers on a Leaflet/OpenStreetMap map in the directory layout, with a list/map toggle and clickable pins (name, rating, book). Per-provider coordinates are set in the admin; the map library loads only when the map view is opened."
   },
   "HowItWorks": {
     "overline": "Getting Started",
