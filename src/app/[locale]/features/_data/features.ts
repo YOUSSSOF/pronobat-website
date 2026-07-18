@@ -83,6 +83,11 @@ export const FEATURES: Feature[] = [
     icon: "IconCode",
   },
   {
+    id: "waitlist",
+    category: "core",
+    icon: "IconClockHour4",
+  },
+  {
     id: "zarinpal",
     category: "payments",
     icon: "IconCreditCard",

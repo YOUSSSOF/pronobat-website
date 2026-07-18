@@ -45,6 +45,7 @@ import {
   IconLanguage,
   IconShoppingCart,
   IconWallet,
+  IconClockHour4,
 } from "@tabler/icons-react";
 import type { Feature, FeatureCategory } from "../_data/features";
 import { CATEGORIES } from "../_data/features";
@@ -91,6 +92,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
   IconLanguage,
   IconShoppingCart,
   IconWallet,
+  IconClockHour4,
 };
 
 interface FeatureRowData extends Feature {
