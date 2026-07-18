@@ -88,6 +88,11 @@ export const FEATURES: Feature[] = [
     icon: "IconClockHour4",
   },
   {
+    id: "funnel_analytics",
+    category: "core",
+    icon: "IconChartFunnel",
+  },
+  {
     id: "zarinpal",
     category: "payments",
     icon: "IconCreditCard",

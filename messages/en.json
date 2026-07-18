@@ -83,7 +83,9 @@
     "recurring_title": "Recurring Appointments",
     "recurring_desc": "Create weekly or monthly appointment series with RRULE and bulk cancellation.",
     "waitlist_title": "Waitlist",
-    "waitlist_desc": "When a day is fully booked, customers can join a waitlist; a cancellation automatically notifies the earliest waiters by SMS. Managed from an admin waitlist page."
+    "waitlist_desc": "When a day is fully booked, customers can join a waitlist; a cancellation automatically notifies the earliest waiters by SMS. Managed from an admin waitlist page.",
+    "funnel_analytics_title": "Funnel Analytics",
+    "funnel_analytics_desc": "Anonymous, privacy-friendly tracking of how visitors move through the booking form — see per-step counts, conversion, and where people drop off, across 7/30/90-day ranges."
   },
   "HowItWorks": {
     "overline": "Getting Started",
