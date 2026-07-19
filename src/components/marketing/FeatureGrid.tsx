@@ -7,11 +7,11 @@ import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/GlassCard";
 import {
   IconCalendar,
-  IconCreditCard,
-  IconMessage,
-  IconChartBar,
-  IconUsers,
+  IconStar,
+  IconUser,
   IconRepeat,
+  IconBrandGoogle,
+  IconWebhook,
 } from "@tabler/icons-react";
 
 interface FeatureCardData {
@@ -22,11 +22,11 @@ interface FeatureCardData {
 
 const FEATURES: FeatureCardData[] = [
   { Icon: IconCalendar, titleKey: "jalali_title", descKey: "jalali_desc" },
-  { Icon: IconCreditCard, titleKey: "payment_title", descKey: "payment_desc" },
-  { Icon: IconMessage, titleKey: "sms_title", descKey: "sms_desc" },
-  { Icon: IconChartBar, titleKey: "reports_title", descKey: "reports_desc" },
-  { Icon: IconUsers, titleKey: "staff_title", descKey: "staff_desc" },
+  { Icon: IconStar, titleKey: "reviews_title", descKey: "reviews_desc" },
+  { Icon: IconUser, titleKey: "customer_title", descKey: "customer_desc" },
   { Icon: IconRepeat, titleKey: "recurring_title", descKey: "recurring_desc" },
+  { Icon: IconBrandGoogle, titleKey: "gcal_title", descKey: "gcal_desc" },
+  { Icon: IconWebhook, titleKey: "developer_title", descKey: "developer_desc" },
 ];
 
 const containerVariants = {

@@ -1,6 +1,8 @@
 // ── Guide page types ──────────────────────────────────────────────────────
 
 export type GuideCategory =
+  | "builder"
+  | "marketplace"
   | "payments"
   | "notifications"
   | "calendar"
@@ -20,6 +22,36 @@ export interface GuidePage {
 // ── All guides (ordered for listing) ─────────────────────────────────────
 
 export const ALL_GUIDES: GuidePage[] = [
+  {
+    slug: "build-a-custom-form",
+    titleFa: "ساخت فرم رزرو اختصاصی",
+    titleEn: "Build a Custom Booking Form",
+    descriptionFa: "با فرم‌ساز کشیدن‌ورهاکردن، فیلدها را بچینید، چیدمان را انتخاب کنید و فرم را منتشر کنید.",
+    descriptionEn:
+      "Use the drag-and-drop builder to arrange fields, pick a layout, and publish your own booking form.",
+    category: "builder",
+    readingTimeMin: 6,
+  },
+  {
+    slug: "set-up-the-directory",
+    titleFa: "راه‌اندازی بازارگاه متخصصان",
+    titleEn: "Set Up the Provider Marketplace",
+    descriptionFa: "چیدمان بازارگاه، تعریف فیلترها و ویژگی‌ها، تنظیم موقعیت روی نقشه، و انتشار فهرست.",
+    descriptionEn:
+      "Configure the directory layout, filters and attributes, provider map coordinates, and publish the listing.",
+    category: "marketplace",
+    readingTimeMin: 8,
+  },
+  {
+    slug: "woocommerce-checkout",
+    titleFa: "پرداخت نوبت با ووکامرس",
+    titleEn: "Booking Checkout with WooCommerce",
+    descriptionFa: "فعال‌کردن حالت ووکامرس، جریان سفارش مجازی، و دریافت پیش‌پرداخت.",
+    descriptionEn:
+      "Enable WooCommerce mode, the virtual-order flow, and taking a deposit.",
+    category: "payments",
+    readingTimeMin: 6,
+  },
   {
     slug: "setup-payments",
     titleFa: "راه‌اندازی پرداخت با زرین‌پال",
@@ -95,6 +127,8 @@ export const ALL_GUIDES: GuidePage[] = [
 // ── Category labels ───────────────────────────────────────────────────────
 
 export const GUIDE_CATEGORY_LABELS: Record<GuideCategory, { fa: string; en: string }> = {
+  builder: { fa: "فرم‌ساز", en: "Builder" },
+  marketplace: { fa: "بازارگاه", en: "Marketplace" },
   payments: { fa: "پرداخت", en: "Payments" },
   notifications: { fa: "اعلان‌ها", en: "Notifications" },
   calendar: { fa: "تقویم", en: "Calendar" },

@@ -44,6 +44,8 @@ export default async function FeaturesPage({ params }: Props) {
   const categoryLabels = {
     all: t("cat_all"),
     core: t("cat_core"),
+    builder: t("cat_builder"),
+    marketplace: t("cat_marketplace"),
     payments: t("cat_payments"),
     notifications: t("cat_notifications"),
     calendar: t("cat_calendar"),

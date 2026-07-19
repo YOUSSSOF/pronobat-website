@@ -48,6 +48,16 @@ import {
   IconClockHour4,
   IconChartFunnel,
   IconMapPin,
+  IconForms,
+  IconLayoutGrid,
+  IconListDetails,
+  IconArrowsSplit,
+  IconLayoutList,
+  IconFilter,
+  IconIdBadge,
+  IconUserPlus,
+  IconStar,
+  IconMessageCode,
 } from "@tabler/icons-react";
 import type { Feature, FeatureCategory } from "../_data/features";
 import { CATEGORIES } from "../_data/features";
@@ -97,6 +107,16 @@ const ICON_MAP: Record<string, React.ElementType> = {
   IconClockHour4,
   IconChartFunnel,
   IconMapPin,
+  IconForms,
+  IconLayoutGrid,
+  IconListDetails,
+  IconArrowsSplit,
+  IconLayoutList,
+  IconFilter,
+  IconIdBadge,
+  IconUserPlus,
+  IconStar,
+  IconMessageCode,
 };
 
 interface FeatureRowData extends Feature {
@@ -109,6 +129,8 @@ interface FeatureFilterClientProps {
   labels: {
     all: string;
     core: string;
+    builder: string;
+    marketplace: string;
     payments: string;
     notifications: string;
     calendar: string;

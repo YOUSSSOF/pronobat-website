@@ -137,6 +137,33 @@ POST /pronobat/v1/payments/{id}/refund
 
 **دسترسی:** `pronobat_manage_payments`
 
+## مسیرهای بازارگاه و قابلیت‌های جدید
+
+با گسترش پرونوبت به فرم‌ساز و بازارگاه، مسیرهای عمومی زیر هم اضافه شده‌اند (همگی زیر `pronobat/v1/public/`):
+
+```
+GET  /public/directory              # فهرست ارائه‌دهندگان (با فیلترها)
+GET  /public/providers/{id}/reviews # نظرهای تأییدشده‌ی یک متخصص
+GET  /public/locations              # استان‌ها و شهرها
+POST /public/reviews                # ثبت نظر (نیازمند نوبتِ گذشته‌ی معتبر)
+POST /public/provider-application   # ثبت‌نام ارائه‌دهنده
+POST /public/waitlist               # ثبت‌نام در لیست انتظار
+POST /public/track                  # رویداد تحلیل قیف (ناشناس)
+GET  /public/my-appointments        # داشبورد مشتری (با کوکی)
+POST /public/my-profile             # ویرایش پروفایل مشتری
+```
+
+مسیرهای مدیریتی جدید:
+
+```
+GET    /pronobat/v1/reviews                  # صف تأیید نظرات
+POST   /pronobat/v1/reviews/{id}/(approve|reject)
+GET    /pronobat/v1/waitlist                 # لیست انتظار
+DELETE /pronobat/v1/waitlist/{id}
+GET    /pronobat/v1/analytics/funnel?days=30 # گزارش قیف رزرو
+GET    /pronobat/v1/forms · /pronobat/v1/flows  # فرم‌ساز و جریان رزرو
+```
+
 ## کدهای خطا
 
 | کد | معنی |

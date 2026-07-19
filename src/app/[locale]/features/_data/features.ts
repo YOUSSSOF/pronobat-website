@@ -7,6 +7,8 @@
 
 export type FeatureCategory =
   | "core"
+  | "builder"
+  | "marketplace"
   | "payments"
   | "notifications"
   | "calendar"
@@ -66,6 +68,73 @@ export const FEATURES: Feature[] = [
     category: "core",
     icon: "IconCircleCheck",
   },
+  {
+    id: "customer_dashboard",
+    category: "core",
+    icon: "IconLayoutDashboard",
+  },
+  {
+    id: "waitlist",
+    category: "core",
+    icon: "IconClockHour4",
+  },
+  {
+    id: "funnel_analytics",
+    category: "core",
+    icon: "IconChartFunnel",
+  },
+  // ── Booking builder ───────────────────────────────────────────────────────
+  {
+    id: "form_builder",
+    category: "builder",
+    icon: "IconForms",
+  },
+  {
+    id: "flow_layouts",
+    category: "builder",
+    icon: "IconLayoutGrid",
+  },
+  {
+    id: "custom_fields",
+    category: "builder",
+    icon: "IconListDetails",
+  },
+  {
+    id: "conditional_logic",
+    category: "builder",
+    icon: "IconArrowsSplit",
+  },
+  // ── Marketplace ───────────────────────────────────────────────────────────
+  {
+    id: "directory",
+    category: "marketplace",
+    icon: "IconLayoutList",
+  },
+  {
+    id: "configurable_filters",
+    category: "marketplace",
+    icon: "IconFilter",
+  },
+  {
+    id: "map_view",
+    category: "marketplace",
+    icon: "IconMapPin",
+  },
+  {
+    id: "provider_profiles",
+    category: "marketplace",
+    icon: "IconIdBadge",
+  },
+  {
+    id: "provider_registration",
+    category: "marketplace",
+    icon: "IconUserPlus",
+  },
+  {
+    id: "reviews",
+    category: "marketplace",
+    icon: "IconStar",
+  },
   // ── Payments ──────────────────────────────────────────────────────────────
   {
     id: "woocommerce_bridge",
@@ -81,21 +150,6 @@ export const FEATURES: Feature[] = [
     id: "embeddable_widget",
     category: "integrations",
     icon: "IconCode",
-  },
-  {
-    id: "waitlist",
-    category: "core",
-    icon: "IconClockHour4",
-  },
-  {
-    id: "funnel_analytics",
-    category: "core",
-    icon: "IconChartFunnel",
-  },
-  {
-    id: "map_view",
-    category: "core",
-    icon: "IconMapPin",
   },
   {
     id: "zarinpal",
@@ -178,6 +232,21 @@ export const FEATURES: Feature[] = [
     category: "notifications",
     icon: "IconAlarm",
   },
+  {
+    id: "sms_patterns",
+    category: "notifications",
+    icon: "IconMessageCode",
+  },
+  {
+    id: "sms_simulate",
+    category: "notifications",
+    icon: "IconTestPipe",
+  },
+  {
+    id: "custom_http_sms",
+    category: "notifications",
+    icon: "IconWebhook",
+  },
   // ── Calendar ──────────────────────────────────────────────────────────────
   {
     id: "jalali_datepicker",
@@ -242,6 +311,11 @@ export const FEATURES: Feature[] = [
     icon: "IconBrandPhp",
   },
   {
+    id: "phpstan_level8",
+    category: "developer",
+    icon: "IconBug",
+  },
+  {
     id: "hooks_filters",
     category: "developer",
     icon: "IconWebhook",
@@ -262,11 +336,6 @@ export const FEATURES: Feature[] = [
     icon: "IconShield",
   },
   {
-    id: "phpstan_level6",
-    category: "developer",
-    icon: "IconBug",
-  },
-  {
     id: "i18n_ready",
     category: "developer",
     icon: "IconLanguage",
@@ -275,6 +344,8 @@ export const FEATURES: Feature[] = [
 
 export const CATEGORIES: FeatureCategory[] = [
   "core",
+  "builder",
+  "marketplace",
   "payments",
   "notifications",
   "calendar",

@@ -14,8 +14,10 @@ function FaqAccordion({ className }: FaqAccordionProps) {
 
   const FAQ_KEYS = [
     "free",
-    "wordpress_version",
+    "builder",
+    "marketplace",
     "payment_gateways",
+    "wordpress_version",
     "jalali",
     "recurring",
     "gdpr",
